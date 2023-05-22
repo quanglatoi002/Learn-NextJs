@@ -1,0 +1,2 @@
+Setup project
+npx create-next-app --ts
