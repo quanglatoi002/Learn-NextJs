@@ -1,0 +1,11 @@
+1.Navigation between pages with next/link
+2. Navigation to a page programmatically using router.push()
+3. How prefetching works
+
+Prefetch the page in the background for faster client transitions(by default Link will have prefetch turned On)
+
+Only prefetches links that appear in the viewport
+
+Prefetching is only enabled in production ý nói ở đây là phải chạy run build và sau đó start nó.
+
+Note: Next.js only fetches the Js, it doesn't execute it.
