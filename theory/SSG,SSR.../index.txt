@@ -7,6 +7,8 @@
 # Name Desc
 1 Static automatically rendered as static HTML (uses no initial props)
 2 SSG automatically generated as static HTML + JSON (uses getStaticProps)
+    - Nó cho phép bạn tạo ra các trang web tĩnh trước và trình bày chúng cho ng dùng 1 cách nhanh chóng và hiệu quả.
+    Với SSG bạn có thể tạo ra các trang web tĩnh trước và chỉ cần tải dữ liệu cần thiết cho trang trước khi nó được gửi đến máy khách, và không cần chờ đợi và thực thi mã JS. Điều này giúp tăng tốc độ tải trang và trảu nghiệm người dùng.
 3 ISR incremental static regeneration (uses revalidate in getStaticProps)
 4 SSG + CSR pre-rendered HTML + data fetching on client side using useEffect
 5 SSR server-side renders at runtime (uses getInitialProps or getServerSideProps)
