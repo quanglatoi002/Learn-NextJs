@@ -1,0 +1,14 @@
+1. getStaticPaths chỉ hoạt động trong trang được tạo tĩnh(static genetation). Điều này có nghĩa là nó không áp dụng cho các trang truyền thống hoặc có tính năng động.
+2. phải được xuất(export) từ pages:
+    'paths': đối tượng đường dẫn params
+    'fallback': 1 giá trị blocking, nếu fallback được đặt thành false thì sẽ hiểu thị ra lỗi 404 nếu có như cầu đến một đường dẫn không được định nghĩa trong path. Nếu fallback được đặt thành true hoặc blocking, Nextjs sẽ tạo ra trang tĩnh cho đường dẫn ch được định nghĩa
+
+ ------ câu hỏi đặt ra là có phải là trong pages không thể tồn tại 2 kiểu như [name] và [postId] cùng tồn tại ph ko?
+-Theo như tìm hiểu thì về việc không thể tồn tại 2 kiểu đường dẫn động khác nhau trong cùng 1 thư mục 'pages'. Khi sử dụng getStaticPaths bạn phải đảm bảo rằng các kiểu đường dẫn động không thể xung đột với nhau trong cùng 1 thư mục
+
+--Lưu ý: khi sử dụng getStaticPaths thì ko thể sử dụng getServerSideProps
+Và chỉ chạy khi xây dựng ở phía máy chủ
+
+Where can I use getStaticPaths
+getStaticPaths must be used with getStaticProps
+run dev khi sử dụng với getStaticPaths
