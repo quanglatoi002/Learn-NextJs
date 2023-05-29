@@ -1,0 +1,8 @@
+Trong Next.js, router.push là một phương thức được sử dụng để chuyển hướng (navigate) đến một trang mới trong ứng dụng.
+
+1. `url`(string hoặc object)
+2. `as` (string hoặc tùy chọn)
+3. `options`(object, tùy chọn)
+    options.shadow(boolean): Nếu được đặt thành 'true' chuyển hướng sẽ được thực hiện mà không làm tải lại trang(shallow routing). Mặc định là "false"
+    options.scroll(boolean hoặc object)
+4.replace(boolean, tùy chọn)

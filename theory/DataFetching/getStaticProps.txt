@@ -11,4 +11,4 @@ Và chỉ chạy khi xây dựng ở phía máy chủ
 
 Where can I use getStaticPaths
 getStaticPaths must be used with getStaticProps
-run dev khi sử dụng với getStaticPaths
+    run dev khi sử dụng với getStaticPaths
