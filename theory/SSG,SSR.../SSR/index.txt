@@ -1,0 +1,17 @@
+1. getServerSideProps
+    . Run on server-side only
+    . Run per page request
+    . TTFB(Time To First Byte) will be slower than getStaticProps
+    . Export getServerSideProps from your Page to enabled SSR
+
+    --------CDN(Content Delivery Network)
+        Máy chủ này sẽ cung cấp tài nguyên từ bộ nhớ cache của nó, nếu có. Nếu không, nó sẽ tải tài nguyên từ máy chủ gốc và lưu vào cache để các yêu cầu tiếp theo có thể được phục vụ từ cache
+
+2.Using cache
+    Using s-maxage=5
+    .Keep the page FRESH in 5 seconds, after that call getServerSideProps again on page request
+    Khi chỉ định rằng cache chia sẻ(thường được sử dụng bởi CDN hoặc reverse proxy) nên cache phản hồi trong tối đa 5 giây, sau 5 giây sẽ mất hiệu lực
+
+    ==> Cái hay ở đây là nó cho phép bạn đặt time caching ngắn hơn cho cache chia sẻ để đảm bảo rằng cache luôn được cập nhật với nội dung mới nhất từ máy chủ nguồn
+
+    - LƯU Ý: sử dụng s-maxage=5 trên localhost nó sẽ không thể hoạt động như trên CDN hoặc reverse proxy.

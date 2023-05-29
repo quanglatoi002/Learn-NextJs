@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-type Props = {};
+export interface Props {}
 
-const paramsPage = (props: Props) => {
+export default function ParamsPage(props: Props) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   return (
@@ -12,6 +12,12 @@ const paramsPage = (props: Props) => {
       <p>Query: {JSON.stringify(router.query)}</p>
     </div>
   );
-};
+}
 
-export default paramsPage;
+export async function getServerSideProps() {
+  // fake slow query
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  return {
+    props: {},
+  };
+}
