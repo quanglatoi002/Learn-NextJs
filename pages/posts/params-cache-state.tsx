@@ -37,6 +37,7 @@ export default function ParamsPage({ query, post }: ParamsPageProps) {
   );
 }
 
+//
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   context.res.setHeader('Cache-Control', 's-maxage=5, stale-while-revalidate');
 

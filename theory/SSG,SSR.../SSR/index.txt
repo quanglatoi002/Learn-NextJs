@@ -8,10 +8,28 @@
         Máy chủ này sẽ cung cấp tài nguyên từ bộ nhớ cache của nó, nếu có. Nếu không, nó sẽ tải tài nguyên từ máy chủ gốc và lưu vào cache để các yêu cầu tiếp theo có thể được phục vụ từ cache
 
 2.Using cache
-    Using s-maxage=5
+    Using s-maxage=5(Sau lần đầu tiên chúng ta reload lại thì trong khoảng 5s tiếp theo mà chúng ta có reload lại đi nữa thì kết quả vẫn dữ nguyên bên phía client nhưng bên server đã thay đổi rồi. Nếu qua 5s rồi we mới reload lại thì kết quả sẽ lập tức thay đổi)
     .Keep the page FRESH in 5 seconds, after that call getServerSideProps again on page request
     Khi chỉ định rằng cache chia sẻ(thường được sử dụng bởi CDN hoặc reverse proxy) nên cache phản hồi trong tối đa 5 giây, sau 5 giây sẽ mất hiệu lực
 
     ==> Cái hay ở đây là nó cho phép bạn đặt time caching ngắn hơn cho cache chia sẻ để đảm bảo rằng cache luôn được cập nhật với nội dung mới nhất từ máy chủ nguồn
 
     - LƯU Ý: sử dụng s-maxage=5 trên localhost nó sẽ không thể hoạt động như trên CDN hoặc reverse proxy.
+
+
+    USING s-maxage=5 and stale-while-revalidate
+
+    - Giữ page trong 5s. Sau đó trên trang yêu cầu, trả lại dữ liệu cũ ngay lập tức và gọi getServerSideProps để có dữ liệu mới bộ đệm
+    ==> we có thể hiểu là trong trong quá trình cache mà chúng ta thay đổi dữ liệu thì bên dữ liệu sẽ lập tức thay đổi nhưng bên client lúc này đã next quá 5s rồi mà we mới reload thì kết quả trả về hiện lên vẫn là giá trị cũ của trước đó mà không bị thay đổi, điều này có thể giải thích là sau khi we reload(stale) thì sau đó mới gọi getServerSideProps(), và lần này we sẽ reload thì kết quả sẽ trả ra kết quả mới nhất
+
+    --USING s-maxage=5 and stale-while-revalidate=5
+    ==> Ở đây có hơn đặc biệt tí, lúc này ko còn là 5s như trước nữa mà là thành 10s với sự kết hợp của s-maxage và stale-while-revalidate.
+    Nếu time đã quá 10s mà we reload lại thì kết quả sẽ trả ra kết quả mới nhất mà ko phải giá trị cũ như stale-while-revalidate.
+
+3.-----Các vấn đề tiềm ẩn
+
+Xóa bộ đệm CDN để triển khai mới -> Vercel làm điều đó cho chúng tôi
+Hãy cẩn thận với trang hiển thị dữ liệu cho người dùng cụ thể:
+    - Chỉ kên dùng với những thông tin được public mà thôi.
+    -  khuyến mãi khác nhau
+    -  Kết quả khác nhau dựa trên độ tuổi của người dùng
