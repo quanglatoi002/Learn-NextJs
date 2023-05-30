@@ -1,0 +1,8 @@
+SSG - but build-time Only
+CSR - Good for private app
+SSR - Latest data as always, performance concerns(mối quan tâm)
+
+We'll try to build app and avoid using SSR as much as we can:
+Public page with no data: SSG
+Public page with data and can be updated from CMS: ISR
+Private pages: SSG + CSR
