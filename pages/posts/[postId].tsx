@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.data.map((post: any) => ({ params: { postId: post.id } })),
-    fallback: true, // nếu fallback lúc này là false thì sẽ thông báo lỗi 404 vì đường dẫn không được định nghĩa trong path
+    fallback: true, // nếu fallback lúc này là false thì sẽ thông báo lỗi 404 vì đường dẫn không được định nghĩa trong path. True và blocking đều giống nhau
   };
 };
 export const getStaticProps: GetStaticProps<PostPageProps> = async (
