@@ -12,3 +12,14 @@
 3 ISR incremental static regeneration (uses revalidate in getStaticProps)
 4 SSG + CSR pre-rendered HTML + data fetching on client side using useEffect
 5 SSR server-side renders at runtime (uses getInitialProps or getServerSideProps)
+
+======== For "public-frist" websites(blog, e-commerce)
+.Public website with static public data: use SSG, static public data are fetched(tìm nạp dữ liệu) at build time
+.Public website with dynamic public data: use SSG, static public data are initially fetched at build time + ISR for updating public dynamic data + client-side to fetch data that changes really really quickly
+.public website with some private data: same + you fetch private data client-side as usual in a SPA
+.Public website with a very strong requirement of having fresh data being server-side rendered: you use SSR, but that barely ever happens for most app
+
+        ==== For "private-frist" website =====
+Private apps have been bugging(làm phiền) me for a while but I think I get it better now:
+.Any private app: SSG of an empty shell without data + data-fetching client-side
+.Public website with a very strong requirement of having fresh data being server-side rendered: SSR(could happen for mobile users for instance, but still(vẫn) a limited use case)

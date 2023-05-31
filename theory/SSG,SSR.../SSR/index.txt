@@ -33,3 +33,7 @@ Hãy cẩn thận với trang hiển thị dữ liệu cho người dùng cụ t
     - Chỉ kên dùng với những thông tin được public mà thôi.
     -  khuyến mãi khác nhau
     -  Kết quả khác nhau dựa trên độ tuổi của người dùng
+
+
+    -- cách thức hoạt động của ISR: we đặt value validate là 5s rồi sau đó qua trình duyệt reload lại trang để có thể cập nhật lại dữ liệu đã update bên postman. Ở lần reload đầu tiên thì bên phía client-side giá trị ban đầu vẫn giữ nguyên mà ko thay đổi, nhưng bên trong nó âm thầm thay đổi giá trị mới và lần reload tiếp theo sẽ cập nhật giá trị mới.
+
