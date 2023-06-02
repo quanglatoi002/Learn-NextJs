@@ -12,12 +12,8 @@ export function MainLayout({ children }: LayoutProps) {
     return (
         <div>
             <h1>Main Layout</h1>
-            <Link href="/">
-                <p>Home</p>
-            </Link>
-            <Link href="/about">
-                <p>About</p>
-            </Link>
+            <Link href="/">Home</Link>
+            <Link href="/about">About</Link>
             <div>{children}</div>
         </div>
     );

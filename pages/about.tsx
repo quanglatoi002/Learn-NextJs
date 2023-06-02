@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Header from '@/components/common/header';
-import { MainLayout } from '@/components/layout';
+import { AdminLayout, MainLayout } from '@/components/layout';
 
 //sử dụng dynamic ssr=false cho trường hợp bạn chỉ muốn nó render ở phía clients
 // const Header = dynamic(() => import('@/components/common/header'), { ssr: false });
@@ -29,7 +29,7 @@ export default function AboutPage(props: AboutPageProps) {
     function handleNextClick() {
         router.push(
             {
-                pathname: 'about',
+                pathname: '/about',
                 query: {
                     page: (Number(page) || 1) + 1,
                 },
@@ -40,8 +40,8 @@ export default function AboutPage(props: AboutPageProps) {
         );
     }
     return (
-        <MainLayout>
-            <h1>about</h1>
+        <div>
+            <h1>About Page</h1>
             <Header />
             <ul className="post-list">
                 {postList.map((item: any) => (
@@ -49,9 +49,10 @@ export default function AboutPage(props: AboutPageProps) {
                 ))}
             </ul>
             <button onClick={handleNextClick}>Next page</button>
-        </MainLayout>
+        </div>
     );
 }
+AboutPage.Layout = AdminLayout;
 export async function getStaticProps() {
     console.log('get static props');
     return {
