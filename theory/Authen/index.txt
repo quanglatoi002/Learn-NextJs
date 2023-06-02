@@ -1,0 +1,8 @@
+1. Auth: cookies or localStorage
+LocalStorage ==> XSS attack(tấn công qua HTML) sử dụng sanitize-html hoặc DOMPurify(loại bỏ các thẻ nguy hiểm như script và những rủi ro tiềm ẩn cho XSS) hoặc JSX, validatation
+--> Còn với React mặc định đã cung cấp các phương thức bảo vệ chống XSS như "ReactDOMServer.renderToString" hoặc "ReactDOMServer.renderToStaticMarkup
+
+2.Our solution with NextJS
+Sử dụng NextJS làm máy chủ proxy để ẩn "Máy chủ API" của chúng tôi khỏi mạng của người dùng.
+Sử dụng cookie với httpOnly để javascript của khách hàng không thể truy xuất cookie
+Tự động gửi cookie đến máy chủ NextJS.
