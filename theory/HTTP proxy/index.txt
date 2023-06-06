@@ -1,0 +1,12 @@
+httpProxy được sử dụng làm trung gian giữa người dùng và các máy chủ web. Nó cho phép bạn chuyển tiếp các yêu cầu HTTP từ máy chủ(client) đến các máy chủ(server) mà không tiếp xúc trực tiếp với target server.
+--> Cách thức hoạt động
+1.Máy khách(client) gửi yêu cầu HTTP tới httpProxy
+2.httpProxy nhận yêu cầu và chuyển tiếp(proward) yêu cầu đến máy chủ đích(target server) mà máy chủ khách muốn truy cập
+3. Máy chủ đích(target server) xử lý yêu cầu và trả về kết quả cho httpProxy
+4.httpProxy nhận kết quả từ target server và forward nó trả lại cho máy khách(client)
+
+Công dụng:
+    1. CORS: bạn có thể chuyển tiếp yêu cầu qua proxy để tránh vấn đề CORS.
+    2.Gắn kết(Load balancing): Giúp tăng hiệu suất và độ tin cậy của ứng dụng web
+    3.Bảo mật và kiểm soái lưu lượng: có thể kiểm soái và giám sát lưu lượng truy cập, giới hạn tốc độ truy cập và xác thực người dùng.
+    4. Điều hướng ng dùng: httpProxy cho phép bạn điều hướng yêu cầu HTTP đến các máy chủ khác nhau dựa trên các quy tắc nhất định

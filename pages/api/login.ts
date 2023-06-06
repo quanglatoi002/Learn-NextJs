@@ -11,7 +11,7 @@ type Data = {
 // để có thể tự xử lý nội dung yêu cầu trong hàm xử lý của router(ví dụ bên postman)
 export const config = {
     api: {
-        //bodyParser được sử dụng để phân tích và xử lý nội dung yêu cầu HTTP như dữ liệu form hoặc JSON
+        //bodyParser: false, nghĩa là việc phân tích cú pháp cho các dữ liệu đầu vào không được thực hiện tự động
         bodyParser: false,
     },
 };
