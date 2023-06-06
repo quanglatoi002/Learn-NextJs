@@ -1,7 +1,10 @@
+import axiosClient from '@/api-client/axiosClient';
 import { EmptyLayout } from '@/components/layout';
 import { AppPropsWithLayout } from '@/models';
 import '@/styles/globals.css';
+import { url } from 'inspector';
 import type { AppProps } from 'next/app';
+import { SWRConfig } from 'swr';
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
     console.log('re-render');
@@ -11,8 +14,10 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     //Lưu ý cách thức hd ở lúc đầu we ở page Home thì layout lúc này là MainLayout, lúc này Layout đã lấy được MainLayout và trả về giá trị của MainLayout và lúc này we thực hiện onClick qua page about thì lúc này Layout sẽ nhận vào là adminLayout. Trước khi đưa giá trị nhận vào là adminLayout thì nó sẽ unmounted Mainlayout và mount tới adminLayout
     const Layout = Component.Layout ?? EmptyLayout;
     return (
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        <SWRConfig value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </SWRConfig>
     );
 }
