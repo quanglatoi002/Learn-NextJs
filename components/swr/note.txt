@@ -1,0 +1,10 @@
+SWR(Stale-While-revalidate) được sử dụng để quản lý trạng thái dữ liệu và tạo các yêu cầu HTTP trong ứng dụng web.
+--API cấu trúc
+const { data, error, isLoading, isValidating, mutate } = useSWR(key, fetcher, options)
+
+revalidateOnFocus: failed nó sẽ hủy tự động revalidate khi từ trang web khác quay trở lại trang có SWR
+revalidateOnMount: failed nó sẽ không gọi dữ liệu lên khi chúng ta mount tới.
+
+dedupingInterval: 2000 -> ý ở đây trong vòng 2s mà bạn có dùng cái hook useSWR trong cái key đã được khai báo thì trong vòng 2s bạn có bnhiu cái request và sử dụng ở bao nhiêu chỗ đi chăng nữa nó cũng ko có đi request api(gọi lại api)
+
+errorRetryInterval = 5000 khoảng time mà chúng ta thử lỗi
