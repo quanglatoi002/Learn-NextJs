@@ -1,4 +1,5 @@
-SWR(Stale-While-revalidate) được sử dụng để quản lý trạng thái dữ liệu và tạo các yêu cầu HTTP trong ứng dụng web.
+SWR(Stale-While-revalidate) được sử dụng để quản lý 
+ fetching dữ liệu và tạo các yêu cầu HTTP trong ứng dụng web.
 --API cấu trúc
 const { data, error, isLoading, isValidating, mutate } = useSWR(key, fetcher, options)
 

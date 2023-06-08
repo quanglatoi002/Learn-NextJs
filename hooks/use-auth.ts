@@ -14,6 +14,11 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
         revalidateOnFocus: false,
         ...options,
     });
+
+    console.log({ profile, error });
+    // ở lần chạy đầu tiên khi truy cập vào page about thì profile = undefined và error = undefined, lúc này firstLoading = true
+    const firstLoading = profile === undefined && error === undefined;
+
     async function login() {
         await authApi.login({
             username: 'test1',
@@ -23,7 +28,8 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
     }
     async function logout() {
         await authApi.logout();
+        // khi thay đổi giá trị thì tránh sử dụng undefined
         mutate({}, false);
     }
-    return { profile, error, login, logout };
+    return { profile, error, login, logout, firstLoading };
 }
