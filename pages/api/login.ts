@@ -25,7 +25,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
     return new Promise((resolve) => {
         //ko gửi cookie tới phía server
         req.headers.cookie = '';
-        const handleLoginResponse: ProxyReqCallback = (proxyRes, req, res) => {
+        const handleLoginResponse: ProxyReqCallback = (proxyRes, req, res, options) => {
             let body = '';
             proxyRes.on('data', function (chunk) {
                 body += chunk;
@@ -50,7 +50,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
             });
         };
         // sự kiện proxyRes, khi client req forward the "target" server and the "target" server send back a res, lúc này "proxyRes" được kích hoạt
-        proxy.once('proxyRes', handleLoginResponse);
+
+        // proxy.once('proxyRes', handleLoginResponse);
         proxy.web(req, res, {
             target: process.env.API_URL,
             changeOrigin: true,

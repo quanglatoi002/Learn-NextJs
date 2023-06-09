@@ -13,7 +13,8 @@ export function createEmotionCache() {
             'meta[name="emotion-insertion-point"]'
         );
         insertionPoint = emotionInsertionPoint ?? undefined;
+        console.log(insertionPoint);
     }
 
-    return createCache({ key: 'mui-style', insertionPoint });
+    return createCache({ key: 'pvq', insertionPoint });
 }

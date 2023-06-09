@@ -8,7 +8,7 @@ import { SWRConfig } from 'swr';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import { createEmotionCache, theme, roboto } from '@/utils';
+import { createEmotionCache, theme, roboto, inter } from '@/utils';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -18,6 +18,7 @@ export default function App({
     pageProps,
     emotionCache = clientSideEmotionCache,
 }: AppPropsWithLayout) {
+    // console.log((emotionCache.key = 'quang'));
     //nhưng tk ko định nghĩa layout thì nó mặc định lấy EmptyLayout và chỉ rendered được cái <Component {...pageProps} /> thôi
     // khi 2 components cùng dùng chung 1 cái layout thì nó sẽ chỉ thay đổi cái page thôi chứ ko thay đổi layout(re-render)
 

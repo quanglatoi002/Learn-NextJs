@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import Header from '@/components/common/header';
+// import Header from '@/components/common/header';
 import { AdminLayout, MainLayout } from '@/components/layout';
+import { Box, Typography } from '@mui/material';
+import { roboto, inter } from '@/utils';
 
 //sử dụng dynamic ssr=false cho trường hợp bạn chỉ muốn nó render ở phía clients
 // const Header = dynamic(() => import('@/components/common/header'), { ssr: false });
@@ -40,16 +42,26 @@ export default function AboutPage(props: AboutPageProps) {
         );
     }
     return (
-        <div>
-            <h1>About Page</h1>
-            <Header />
+        <Box
+            sx={{
+                pt: 2,
+                bgcolor: 'background.paper',
+                width: 300,
+                border: 1,
+                borderColor: 'primary.main',
+            }}
+        >
+            <Typography component="h1" variant="h5" color="primary.main">
+                About Page
+            </Typography>
+            {/* <Header /> */}
             <ul className="post-list">
                 {postList.map((item: any) => (
                     <li key={item.id}>{item.title}</li>
                 ))}
             </ul>
             <button onClick={handleNextClick}>Next page</button>
-        </div>
+        </Box>
     );
 }
 AboutPage.Layout = AdminLayout;
