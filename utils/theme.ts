@@ -1,4 +1,4 @@
-import { Roboto, Inter } from 'next/font/google';
+import { Roboto, Inter, Heebo } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
@@ -13,6 +13,12 @@ export const roboto = Roboto({
 export const inter = Inter({
     weight: ['300', '400', '500', '700'],
     subsets: ['latin'],
+});
+
+export const heebo = Heebo({
+    weight: ['400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
 });
 
 // Create a theme instance.
@@ -32,7 +38,7 @@ export const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: roboto.style.fontFamily,
+        fontFamily: 'Heebo, sans-serif',
     },
     components: {
         MuiContainer: {
@@ -50,6 +56,19 @@ export const theme = createTheme({
                     maxWidth: '860px',
                     '@media(min-width:900px)': {
                         maxWidth: '860px',
+                    },
+                },
+            },
+        },
+        MuiLink: {
+            defaultProps: {
+                underline: 'none',
+            },
+            styleOverrides: {
+                root: {
+                    color: 'black',
+                    '&:hover, &.active': {
+                        color: '#FF6464',
                     },
                 },
             },
