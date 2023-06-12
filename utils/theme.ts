@@ -26,6 +26,7 @@ export let theme = createTheme({
     palette: {
         primary: {
             main: '#FF6464',
+            light: '#FFFFFF',
         },
         secondary: {
             light: '#EDF7FA',
@@ -77,6 +78,7 @@ export let theme = createTheme({
                 },
             },
         },
+        MuiCard: {},
         MuiButton: {
             variants: [
                 {
