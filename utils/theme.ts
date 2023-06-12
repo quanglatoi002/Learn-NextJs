@@ -1,5 +1,5 @@
 import { Roboto, Inter, Heebo } from 'next/font/google';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 
 export const roboto = Roboto({
@@ -22,16 +22,20 @@ export const heebo = Heebo({
 });
 
 // Create a theme instance.
-export const theme = createTheme({
+export let theme = createTheme({
     palette: {
         primary: {
             main: '#FF6464',
         },
         secondary: {
+            light: '#EDF7FA',
             main: '#00A8CC',
         },
         error: {
             main: red.A400,
+        },
+        text: {
+            primary: '#21243D',
         },
         background: {
             paper: '#001150',
@@ -73,5 +77,23 @@ export const theme = createTheme({
                 },
             },
         },
+        MuiButton: {
+            variants: [
+                {
+                    props: { variant: 'contained', color: 'primary' },
+                    style: {
+                        color: 'white',
+                        backgroundColor: '#FF6464',
+                    },
+                },
+            ],
+        },
     },
 });
+theme = responsiveFontSizes(theme);
+// theme.typography.h3 = {
+//     fontSize: '2rem',
+//     [theme.breakpoints.up('md')]: {
+//         fontSize: '44px',
+//     },
+// };

@@ -1,3 +1,4 @@
+import { HeroSection, RecentPosts } from '@/components/home';
 import { MainLayout } from '@/components/layout';
 import { NextPageWithLayout } from '@/models';
 import { Box } from '@mui/material';
@@ -7,7 +8,7 @@ import { useRouter } from 'next/router';
 const inter = Inter({ subsets: ['latin'] });
 
 const Home: NextPageWithLayout = () => {
-    const router = useRouter();
+    // const router = useRouter();
 
     // function goToDetailPage() {
     //     router.push({
@@ -19,7 +20,12 @@ const Home: NextPageWithLayout = () => {
     //     });
     // }
 
-    return <Box>Homepage</Box>;
+    return (
+        <Box>
+            <HeroSection />
+            <RecentPosts />
+        </Box>
+    );
 };
 // tk nào xài thì chỉ định MainLayout
 Home.Layout = MainLayout;
