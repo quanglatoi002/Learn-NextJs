@@ -98,7 +98,6 @@ export let theme = createTheme({
             },
             variants: [
                 {
-                    // có thể hiểu là ở props mà có khai báo color: 'secondary' thì we sẽ config lại với style:{color, font ....}
                     props: {
                         color: 'secondary',
                     },
