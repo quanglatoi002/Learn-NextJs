@@ -1,5 +1,5 @@
 import { Facebook, Instagram, LinkedIn, Twitter } from '@mui/icons-material';
-import { Icon, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import * as React from 'react';
 
@@ -12,11 +12,9 @@ export function Footer() {
     ];
     return (
         <Box component="footer" py={2} textAlign="center">
-            <Stack direction="row" justifyContent="center">
+            <Stack>
                 {socialLinks.map((item, index) => (
-                    <Box key={index} component="a" p={2}>
-                        <Icon component={item.icon} sx={{ fontSize: 48 }} />
-                    </Box>
+                    <Box key={index} component="a"></Box>
                 ))}
             </Stack>
             <Typography>Copyright ©{new Date().getFullYear()} All rights reserved</Typography>

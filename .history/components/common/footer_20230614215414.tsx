@@ -12,7 +12,7 @@ export function Footer() {
     ];
     return (
         <Box component="footer" py={2} textAlign="center">
-            <Stack direction="row" justifyContent="center">
+            <Stack pb={2} direction="row" justifyContent="center">
                 {socialLinks.map((item, index) => (
                     <Box key={index} component="a" p={2}>
                         <Icon component={item.icon} sx={{ fontSize: 48 }} />
