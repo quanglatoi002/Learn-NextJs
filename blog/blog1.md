@@ -1,236 +1,151 @@
-slug: lo-trinh-hoc-reactjs-co-ban-2020
-title: Lộ trình học ReactJS cơ bản cho người mới bắt đầu 2020 🥰
+---
+slug: bi-kip-phong-van-reactjs-thanh-cong
+title: Bí kíp cho buổi phỏng vấn ReactJS thành công 🎉
 author: Hậu Nguyễn
 author_title: Senior Software Engineer at fram^
 author_url: https://github.com/paulnguyen-mn
 author_image_url: https://avatars3.githubusercontent.com/u/31444102?s=400&u=c545a527aa31843e1361462e410c0f51863e8e26&v=4
-tags: [reactjs, lộ trình học reactjs cơ bản]
-
+image: https://images.unsplash.com/photo-1549923746-c502d488b3ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80
+tags: [reactjs, phỏng vấn reactjs]
 ---
 
-Rất nhiều bạn thắc mắc không biết là học ReactJS là học những gì? Rồi bắt đầu từ đâu? Sử dụng những package, thư viện nào, ... Để giúp các bạn trả lời câu hỏi đó, mình có tổng hợp lại một số nguồn tham khảo cũng như kinh nghiệm cá nhân của mình để viết ra lộ trình học ReactJS này, hi vọng giúp ích được cho các bạn. 😉
+Chắc hẳn nhiều bạn rất hồi hộp, lo lắng khi chuẩn bị cho buổi phỏng vấn ReactJS sắp tới đúng không nào? Hiểu điều đó, mình có viết ra một vài ý, hi vọng bạn nắm được format một buổi phỏng vấn reactjs diễn ra như thế nào và hay hỏi những topic nào, từ đó giúp bạn cảm giác tự tin hơn khi đi phỏng vấn. 🙂
 
 <!-- truncate-->
 
--   **Đôi tượng**: mới bắt đầu học ReactJS mà không biết học những gì.
--   **Yêu cầu kiến thức**:
-    -   Javascript cơ bản: [https://javascript.info/](https://javascript.info/)
-    -   ES6 syntax: [http://es6-features.org/#Constants](http://es6-features.org/#Constants)
-    -   Git cơ bản: Học cách quản lý source code
-    -   NPM (Node Package Manager): Tìm hiểu xem đây là gì?
-    -   Tiếng Anh (vì tài liệu đa số là Tiếng Anh)
+![From unplash.com](https://images.unsplash.com/photo-1549923746-c502d488b3ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80)
 
-Nếu như mọi người chưa biết Javascript là gì, thì mình khuyên các bạn nên học JS trước rồi hẵn sang ReactJS nhé, kẻo ngợp nè! 😉
+**AGENGA:**
 
-## Mảng kiến thức cơ bản (BẮT BUỘC)
+1. Một vài lưu ý chung
+2. Ôn tập kiến thức JS/ReactJS
+3. Cày thuật toán, giải thuật
+4. Tìm hiểu về công ty mà mình xin ứng tuyển
 
-**MỘT VÀI NOTES:**
-
--   ReactJS là `thư viện` để xây dựng UI component, chứ không phải `framework` nha.
--   `Lib (thư viện)` vs `framework` khác nhau cái gì? Các bạn chịu khó google để biết thêm nha.
--   Version hiện tại của ReactJS là bao nhiêu?
--   ReactJS là của ai hay tổ chức nào?
--   Tại sao phải cần ReactJS, sao không viết thuần javascript?
--   Sẽ hơi khó hiểu khi mới đầu tiếp cận ReactJS, nhưng không sao, cứ đi tiếp nha hehee
-
-### 0. Setup môi trường làm việc
-
-**Bạn cần gì để bắt đầu code được ReactJS:**
-
--   Cài đặt [NodeJS](https://nodejs.org/en/) (runtime của javascript)
--   Code editor: dùng [VSCode](https://code.visualstudio.com/)
--   Cài đặt một vài extension hữu ích của VSCode: (OPTIONAL)
-    -   Live Server
-    -   Material Theme Icons
-    -   Material Theme
-    -   Sử dụng Fira Code font
-    -   ReactJS code snippets
-    -   ESLint
-    -   Babel Javascript
-    -   Bracket Pair Colorizer:
--   Bắt đầu tạo project:
-    -   Dùng tool `Create React App` để tạo một ReactJS project mẫu: [https://create-react-app.dev/docs/getting-started/](https://create-react-app.dev/docs/getting-started/)
-
-Tada xong tới đây là bạn phải chạy lên được cái website đơn giản của ReactJS rồi đó. <br/>
-Giờ học code ReactJS thôi hehe 😎
-
-### 1. Kiến thức nền tảng
-
--   Đi hết phần Main Concepts của ReactJS, bắt đầu ở đây: [https://reactjs.org/docs/hello-world.html](https://reactjs.org/docs/hello-world.html)
-
-> **Lưu ý**:
+> Lưu ý:
 >
-> -   Không vội vàng, đừng đi nhanh mà không hiểu gì hết.
-> -   Đi từng mục một, đi chậm, học tới đâu, lấy code bỏ vào VSCode chạy lên thử coi nó ra như thế nào để hiêu nó.
-> -   Nếu gặp khó khăn, không hiểu topic nào thì tìm thêm blog, videos về chủ đề đó mà coi thêm.
+> -   Tuỳ mỗi công ty có một style phỏng vấn khác nhau, nên các bạn chỉ tham khảo, đừng mặc định là công ty nào cũng làm giống như bài này chia sẻ nhé 😉
+> -   Đây là chia sẻ chung cho tất cả level: từ junior tới senior. Tuỳ level mà các câu hỏi có thể có hay không, hoặc độ khó sẽ khác nhau.
 
--   Sau khi đi hết phần kiến thức này, hãy tự làm một website đơn giản mà bạn thích:
-    -   `Todo App`: Thêm, Xoá, Sửa và hiển thị ra danh sách TODOS
-    -   `Simple Cart`: Hiển thị danh sách sản phẩm, thêm vào giỏ hàng và tính tiền.
-    -   ...
+---
 
-> Mục đích cho phần này để đảm bảo các bạn hiểu và vận dụng được kiến thức của ReactJS.
+## Một vài lưu ý chung
 
--   Thêm vào đó, các bạn có thể tham khảo thêm các videos mình làm cho ReactJS cơ bản để nắm rõ hơn một số chủ đề mình trao đổi: [https://www.youtube.com/playlist?list=PLeS7aZkL6GOsPo-bFZSNuu4VhYicRjlAq](https://www.youtube.com/playlist?list=PLeS7aZkL6GOsPo-bFZSNuu4VhYicRjlAq)
+Một buổi phỏng vấn thường gồm các phần:
 
-### 2. Type checking
+-   Làm quen, chào hỏi.
+-   Tìm hiểu về kinh nghiệm làm việc ở các project trước đây, tập trung vào project gần nhất.
+-   Giải quyết các tình huống đưa ra:
+    -   Xử lý tình huống trong công việc.
+    -   Xử lý bài toán coding về giải thuật.
+-   Tìm hiểu về mong muốn, nguyện vọng của bạn
+-   Đặt câu hỏi về công ty, dự án sắp tới sẽ làm nếu bạn được nhận.
 
--   Đây là một nội dung OPTIONAL. Không có Type Checking, code của bạn vẫn chạy được bình thường.
--   Thỉnh thoảng bạn thấy code như vầy:
+---
 
-```js
-import PropTypes from 'prop-types';
-function Item() {
-    // ...
-}
-Item.propTypes = {
-    data: PropTypes.object.isRequired,
-    isSpecial: PropTypes.bool,
-};
-export default Item;
-```
+Lưu ý trước và trong buổi phỏng vấn:
 
--   Để ý cái phần `Item.propTypes`, khúc này dù có hay không thì code của bạn vẫn chạy.
+-   **Ăn mặc:** gọn gàng là được, không cần phải thiệt là đẹp nè. Làm IT ko có nhu cầu đẹp hihi. Đơn giản quần jean, áo thun cũng được òi. Không nhất thiết phải là áo sơ mi mới được nhé. 😉
+-   **Thời gian:** Nên đến trước giờ hẹn `10-15p`, đừng đến đúng giờ nhé. Vì tới nơi, các bạn có chút thời gian ngồi nghỉ xíu trước khi vào phỏng vấn nè. 😜 Nhưng cũng đừng tới sớm quá đáng, như sớm 30p chẳng hạn thì hơi lố 😅
+-   **Liên lạc:** Nên xin `số điện thoại` để khi tới nơi không biết gì thì hỏi. Ví dụ như: chỗ để xe, đi tháng máy chỗ nào, lầu mấy, vân vân mây mây.
+-   **Thái độ:** giữ cho mình cái mong muốn `sẵn sàng học hỏi, tìm tòi cái mới`, chứ đừng bảo thủ, em biết cái này, em chỉ làm cái này thôi, em không muốn tìm hiểu công nghệ mới thì dễ tạch nè.
+-   **Thoải mái, tự nhiên:** cái này tuỳ tâm lý từng bạn, không dễ để có được trạng thái này. Cố gắng hít một hơi thât sâu rồi thở ra cho nhẹ người rồi `giữ bình tĩnh`. Tự nhiên nhất có thể nhé. Nếu cần nước cứ lịch sử xin một ly nước (nếu ko có) chứ đừng để khát khô cổ họng rồi không nói nổi nha hehee.
+-   **Thẳng thắn chia sẻ:** một điều chắc chắn là bạn sẽ `không thể nào biết hết tất cả mọi thứ`, sẽ có những câu bạn không biết trả lời, `cứ thẳng thắn` nói là em chưa biết phần này, em sẽ tìm hiểu thêm ạ. Hoặc là em thấy rất hay và thú vị, nếu có cơ hội được làm việc thì em chắc chắn sẽ nghiên cứu thêm để học hỏi ạ. 😉
+-   **Hiểu được mong muốn của bản thân:**
+    -   Bạn mong muốn được làm gì ở công ty này?
+    -   Bạn mong muốn được học hỏi công nghệ nào?
+    -   Bạn dự định tương lai sẽ phát triển theo hướng nào: technical hay management.
+    -   Bạn có kế hoạch gì cho riêng mình để hoàn thành mục tiêu đó hay không?
+        Đại loại nếu bạn không biết bạn muốn gì thì làm sao bạn biết bạn có phù hợp với công ty này hay không?
 
-**Vậy Type Checking có tác dụng gì mà mình phải consider thêm nó vào?**
+## 1. Ôn tập kiến thức JS/ReactJS
 
--   `Cảnh báo lỗi nếu truyền sai kiểu dữ liệu` khi đang dev. Thỉnh thoảng mình hay quên, không để ý loại dữ liệu truyền vào component, dẫn tới một số trường hợp tính toán sai và không như mong muốn, với `Type Checking` nó sẽ giúp mình báo lỗi để mình biết và fix sớm.
--   Type Checking nó chỉ hoạt động khi dev, còn khi lên production nó không chạy nên không sợ bị ảnh hưởng tới performance.
--   Khi component của bạn dần lớn, sử dụng nhiều props, việc khai báo tập trung này giúp bạn có thể biết được, à component này đang sử dụng props gì. Nếu không có, bạn phải scan hết code của component mới biết nó đang dùng những props nào 😭
+Phần này mục đích là để trả lời phần câu hỏi về kiến thức liên quan tới project gần nhất của bạn. Tuỳ bạn nói bạn biết gì mà sẽ bị hỏi liên quan tới những cái bạn biết hehee
 
-> Link tham khảo: https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes
+> TIP: Đừng chém gió phần bạn không biết, kẻo bị hỏi thêm là tạch 😉
 
-### 3. Form
+### HTML/CSS
 
-Trong dự án thực tế, ít ai mà tự xử lý các vấn đề liên quan tới form, thay vào đó là sử dụng một thư viện có sẵn. Ở đây mình có một vài ứng cử viên:
-
--   `React Hook Form` (recommended): mới nhất.
--   `Formik`: phổ biến nhất.
--   `Redux Form`: cái này lưu ý bạn phải dùng redux à nhen 😉
-
-Bạn có thể chọn 1 trong 3 để học và áp dụng vào dự án của mình. Nhưng recommend là học `React Hook Form` hoặc `Formik` thôi.
-
-Khi làm việc với Form, bạn sẽ cần tới một schema validator để hỗ trợ bạn validate dữ liệu trong Form, 2 ứng cử viên cho vị trí này:
-
--   [Joi](https://hapi.dev/module/joi/api/)
--   [Yup](https://github.com/jquense/yup): được inspired từ Joi
-
-**Làm việc với Form, cần lưu ý điều gì?**
-
--   Làm sao set được giá trị khởi tạo cho form.
--   Tổ chức Form như thế nào, bạn nên phân biệt rõ 3 levels
-    -   Thứ nhất là `Form`: Thư viện quản lý Form như `Formik` hay `react-hook-form`
-    -   Thứ hai là `Form Field`: cầu nối để bind giá trị của `form` vào `ui control`.
-    -   Thứ ba là `UI Control`: cái này là những control của thư viện Bootstrap, Material Design hay AntDesign.
-    -   Để hiểu rõ hơn, cùng mình tìm hiểu qua video này nhé: [https://youtu.be/LuNYJuyQxKE](https://youtu.be/LuNYJuyQxKE)
-
-### 4. Routing
-
--   Cái này thì bạn sẽ dùng package `react-router-dom` nè hehe
--   Tài liệu tham khảo đây: [https://reacttraining.com/react-router/web/guides/quick-start](https://reacttraining.com/react-router/web/guides/quick-start)
--   Setup routing trong project đơn giản: [https://youtu.be/mAhUJdf0Kug](https://youtu.be/mAhUJdf0Kug)
-
-Một số điều bạn cần lưu ý khi làm việc với routing:
-
--   Setup routing trong một project gồm những bước nào?
--   Tìm hiểu về Router, Switch, Route và Redirect.
--   Setup nested routing như thế nào? Đây chính là cách tạo ra layout chung ở component cha, và tuỳ vào routing con sẽ render component con tương ứng.
-
-### 5. API
-
--   API là cách thức để client và server có thể giao tiếp với nhau.
--   Mình có một vài lựa chọn để thực hiện gọi một API:
-    -   [XHR](https://javascript.info/xmlhttprequest): cái này hơi cũ cũ òi, viết dạng callback.
-    -   [Fetch](https://javascript.info/fetch): cái này có sẵn trong trình duyệt, viết dạng Promise.
-    -   [Axios](https://github.com/axios/axios) (recommended): cái này nên dùng trong project thực tế nè.
-
-**Tổ chức API module trong project thực tế như thế nào?**
-
--   Thường các file api sẽ được đặt trong 1 folder tên là `api`
--   Lựa chọn 1 http client: thường là `axios`, còn trường hợp project nhỏ, đơn giản thì có thể dùng `fetch` cũng được. Fetch tiện cái là `ko cần cài thêm thư viện`. Còn axios thì phải cài thêm package `axios` nhen.
-
-```
-api
-|__ axiosClient.js hoặc fetchClient.js: config http client và cung cấp các phương thức get, post, put, ...
-|__ productApi.js
-|__ categoryApi.js
-|__ userApi.js
-|__ ... cứ mỗi một resource sẽ có một file API tương ứng 😉
-```
-
--   Sắp tới sẽ có video giải thích về API module này. Mình bổ sung link sau hen hihi
-
-### 6. Hooks
-
--   Ông thần này ra đời giúp Functional component mạnh lên hẵn, thẩm chí vượt mặt cả Class component.
--   Mình có làm 1 series về hooks, đơn giản, dễ hiểu và khá là chi tiết, bạn có thể tham khảo ở đây hen [https://www.youtube.com/playlist?list=PLeS7aZkL6GOsHNoyeEpeL8B1PnbKoQD9m](https://www.youtube.com/playlist?list=PLeS7aZkL6GOsHNoyeEpeL8B1PnbKoQD9m)
-
-### 7. State management
-
-Lưu ý khi có state cần đặt câu hỏi:
-
--   Nếu state này chỉ dùng cho 1 component hiện tại --> dùng component state.
--   Nếu state này nó share cho nhiều components khác nhau --> cần thư viện quản lý state.
-
-Hiện tại thì [Redux](https://redux.js.org/introduction/getting-started) chiếm lợi thế trên thị trường òi khi nhắc tới state management.
-
--   Giờ có [Redux Toolkit](https://redux-toolkit.js.org/) giúp mình sử dụng Redux đơn giản hơn, code ít hơn và được handle bên dưới nhiều hơn.
--   Khuyến khích các bạn nên học Redux cơ bản trước, rồi hãy tới Redux Toolkit nhé.
-
-Nhưng gần đây, Facebook có đang thử nghiệm một thư viện để quản lý state cho ReactJS, đó là [Recoil](https://recoiljs.org/).
-
--   Lưu ý vẫn còn đang thử nghiệm, nên hãy khoan apply cho production.
--   Mình có làm 1 vài videos về Recoil, nếu quan tâm bạn có thể tham khảo hen.
-
-## Một vài topic nâng cao
-
-### 1. HOC
-
--   Tham khảo [https://reactjs.org/docs/higher-order-components.html](https://reactjs.org/docs/higher-order-components.html)
-
-### 2. Authentication
-
-Cái này là phần đăng nhập, đăng ký rồi quên mật khẩu các kiểu, ... Thường project nào cũng có và được làm sẵn, ít người có cơ hội được làm phần này vì nó khá phức tạp và mỗi project setup 1 lần là xong, ít khi phải đụng lại lần 2 🙂
-
-Để làm cái này, mình có thể dùng mấy ông lớn để giúp mình như
-
--   [Firebase Auth](https://firebase.google.com/docs/auth)
--   [Auth0](https://auth0.com/)
-
-Các bạn chịu khó đọc docs để hiểu nó là gì nha.
-
--   Cần hiểu được 1 cái flow đăng nhập, đăng ký diễn ra như thế nào.
--   Token là gì? Tại sao lại cần quản lý nó ? Không có token có được không?
--   Nhập username, password lên server có bị lộ thông tin giữa đường không?
--   Nên lưu token trên website ở đâu?
--   Lỡ token mà bị expired thì phải xử lý thế nào?
+-   Layout bằng flexbox, grid.
+-   Hỏi về UI library bạn sử dụng: Bootstrap, Material Design, Ant Design.
+-   Hỏi về cách bố trí layout.
+-   Cho một phần giao diện nào đó, hỏi bạn làm thế nào để ra được như vậy (chỉ trình bày, ko code)
+-   Hỏi về cách tổ chức styles trong project.
+-   BEM là gì? Apply như thế nào?
+-   SCSS: có gì vui với ông này, có những tính năng nào mà bạn đã sử dụng.
+-   Specificity: độ cụ thể trong css
+-   Làm sao customize được styles của một thư viện UI nào đó.
+-   Reset CSS vs Normalize CSS
 -   ...
 
-### 3. I18n
+### JAVASCRIPT
 
--   Các bạn search Google xem i18n là viết tắt của cái gì nha.
--   Cái này được dùng cho việc hỗ trợ đa ngôn ngữ, khi click vào ngôn ngữ tương ứng thì website được đổi ngôn ngữ tức thì.
--   Package được sử dụng là [React i18 next](https://react.i18next.com/)
--   Ông thần này sử dụng được cho cả Class component và Function component (có hooks)
--   Có phải project nào cũng hỗ trợ đa ngôn ngữ không? Cũng tuỳ project, nên xác định ngay từ đầu, nếu có làm đa ngôn ngữ thì setup từ đầu luôn cho đỡ khổ.
+-   "use strict"
+-   var, const, let khác nhau ra sao?
+-   Block scope với Function scope
+-   Hoisting là gì? Cái này có thể bị hỏi dạng cho đoạn code rồi hỏi kết quả và giải thích.
+-   Closure
+-   Value type vs reference type
+-   Bất đồng bộ trong javascript
+-   setTimeout(), setInterval()
+-   Callback
+-   Promise
+-   Module trong javascript: import, export, ...
+-   ES6: arrow function, for...of, async for...of, async/await, ...
+-   Cho các tình huống xử lý javascript, bạn vận dụng kiến thức để cung cấp giải pháp giải quyết nó.
+-   ...
 
-### 4. Static sites
+### REACTJS
 
--   [React Static](https://github.com/react-static/react-static)
--   [Gatsby](https://www.gatsbyjs.org/)
--   [NextJS](https://nextjs.org/)
+-   Component vs PureComponent
+-   `Life cycle`: cái nào nên sử dụng cho mục đích nào (cái này mình có share trên kênh Youtube của mình)
+-   Phân biệt `component state`, `Context API` và `Redux`: khi nào sử dụng cái nào và lý do.
+-   **Refs trong reactjs**: bạn có dùng nó chưa và dùng cho việc gì? Hoặc ngược lại cho tình huống xài refs để giải quyết xem bạn có biết hay không ?
+-   Routing thì có phần nested routing, nó là gì và khi nào cần nó.
+-   Setup routing cho mấy trang cần phải log in như thế nào?
+-   Form bạn dùng thư viện nào để quản lý: `Formik`, `Redux-Form`, `React-Hook-Form`. Mỗi cái sẽ có những vấn đề riêng có thể hỏi.
+-   `Auth`: bạn handle phần authentication trong app như thế nào? Token, refresh token, expired token? ( nâng cao )
+-   `React hooks`: bạn sử dụng hooks nào và cho mục đích gì?
+-   `Custom hook`: bạn có tự viết một custom hook nào chưa, nếu có thì nó dùng để làm gì ?
+-   Redux thì giờ có `Redux Toolkit` : nó là gì vậy ta ?
+-   Quản lý state bên Facebook đang có thư viện mới là `Recoil`: bạn có nghe về nó không? bạn thấy thế nào? 🤣
+-   Những thư viện bạn hay dùng trong reactjs project.
+-   ...
 
-### 5. Deployment
+## 2. Cày thuật toán, giải thuật
 
-Làm thế nào để deploy website lên server để share cho người khác xem thành quả cày cuốc của mình.
+Cái này thì đa dạng lắm nên mình không biết sẽ bị hỏi về vấn đề gì nhen. Nên ôn luyện hết cho chắc 😉 Thường người ra đề sẽ cho một bài toán gì đó, mình tự phân tích và sử dụng thuật toán thích hợp để giải nó.
 
--   Deploy siêu đơn giản giống mình trong video này:
--   Tham khảo full options tại đây: [https://create-react-app.dev/docs/deployment/](https://create-react-app.dev/docs/deployment/)
+-   Tìm kiếm, sắp xếp đơn giản.
+-   Tìm chuỗi con dài nhất, ngắn nhất và các biến thể của dạng này.
+-   Đệ quy.
+-   Tìm số bí ẩn trong mảng thoả điều kiện gì đó.
+-   Đồ thị (cái này cũng ít bị hỏi)
+-   Design pattern (Singleton, Observer, ...)
+-   Cho đoạn code, hỏi kết quả và giải thích.
+-   Quy hoạch động (cái này hơi nâng cao òi, chắc ít bị hỏi trừ khi công ty làm về thuật toán)
+-   ... nói chung cái này tuỳ khả năng logic của các bạn đó 😉
 
-## Nguồn tài liệu tham khảo
+## 3. Tìm hiểu về công ty mà mình xin ứng tuyển
 
-Rất nhiều link tham khảo về các thư viện làm việc về ReactJS được tổng hợp ở đây: [https://github.com/enaqx/awesome-react](https://github.com/enaqx/awesome-react). Có gì mọi người tham khảo thêm hen. 😉
+**Tìm hiểu công ty:**
 
-> CẢNH BÁO: Lạc lối do nhiều links tham khảo quá 🤣
-> Những thông tin mình ghi nhận trong bài này là từ kinh nghiệm cá nhân, nên sẽ có phần thiếu sót, mọi người hãy cùng bổ sung, đóng góp cho nó hoàn chỉnh nhé. <br/>
-> Cảm ơn mọi người rất nhiều nè ❤️
+-   Công ty làm lĩnh vực gì?
+-   Size bao nhiêu người?
+-   Thành lập khi nào?
+-   Những dự án công ty đã thực hiện.
+-   Reviews về công ty.
+-   ...
+
+**Hỏi về dự án bạn "sẽ" được nhận vào làm**
+
+-   Dự án làm về cái gì?
+-   Sử dụng công nghệ gì, techstack có những gì trong đó.
+-   Có bao nhiêu người rồi, và bạn sẽ làm việc với ai?
+-   Tính của team có vui vẻ, hoà đồng không?
+-   ... nói chung bạn quan tâm gì về team của bạn sắp làm thì cứ hỏi hen hehee
+
+---
+
+Hi vọng bài chia sẻ này hữu ích với mọi người! <br/>
+Chúc các bạn có một buổi phỏng vấn thành công tốt đẹp nhé! 🎉 <br/>

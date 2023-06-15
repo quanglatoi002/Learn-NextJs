@@ -7,6 +7,8 @@ export interface BlogListPageProps {
 }
 
 export default function BlogListPage({ posts }: BlogListPageProps) {
+    //sau khi nhận được kq trả thì destructuring để lấy ra posts của BlogListPageProps
+    console.log('posts', posts);
     return (
         <div>
             Blog List Page
@@ -14,7 +16,7 @@ export default function BlogListPage({ posts }: BlogListPageProps) {
                 {posts.map((post) => (
                     <li key={post.id}>
                         <Link href={`/posts/${post.id}`}>
-                            <a>{post.title}</a>
+                            <h4>{post.title}</h4>
                         </Link>
                     </li>
                 ))}
@@ -24,16 +26,12 @@ export default function BlogListPage({ posts }: BlogListPageProps) {
 }
 
 export const getStaticProps: GetStaticProps<BlogListPageProps> = async () => {
-    // console.log('static props');
-    // const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    // const data = await response.json();
-    // console.log(data);
     //convert markdown files into list of Js objects
-    const data = await getPostList();
-    console.log(data);
+    const postList = await getPostList();
+    //sau khi nhận kết quả thì return kết quả vào posts nằm bên trong BlogListPageProps
     return {
         props: {
-            posts: data.map((x: any) => ({ id: x.id, title: x.title })),
+            posts: postList,
         },
     };
 };
