@@ -111,6 +111,13 @@ export let theme = createTheme({
                 },
             ],
         },
+        MuiIcon: {
+            styleOverrides: {
+                root: {
+                    color: '#21243D',
+                },
+            },
+        },
     },
 });
 theme = responsiveFontSizes(theme);

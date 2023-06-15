@@ -1,3 +1,4 @@
+import { Seo } from '@/components/common/seo';
 import { FeaturedWorks, HeroSection, RecentPosts } from '@/components/home';
 import { MainLayout } from '@/components/layout';
 import { NextPageWithLayout } from '@/models';
@@ -22,6 +23,15 @@ const Home: NextPageWithLayout = () => {
 
     return (
         <Box>
+            <Seo
+                data={{
+                    title: 'NextJS with MUI',
+                    description: 'SEO',
+                    thumbnailUrl:
+                        'https://res.cloudinary.com/dhzrnosrb/image/upload/v1671014272/Qu%E1%BA%A3ng%20Ninh/9fa8099b2c31f56fac20_zcnokd.jpg',
+                    url: 'https://learn-next-js-brown.vercel.app/',
+                }}
+            />
             <HeroSection />
             <RecentPosts />
             <FeaturedWorks />
