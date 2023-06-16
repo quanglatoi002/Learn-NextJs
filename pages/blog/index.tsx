@@ -14,7 +14,6 @@ export default function BlogListPage({ posts }: BlogListPageProps) {
     return (
         <Box>
             <Container>
-                <h1>Blog</h1>
                 <Box component="ul" sx={{ listStyleType: 'none', p: 0 }}>
                     {posts.map((post) => (
                         <li key={post.id}>

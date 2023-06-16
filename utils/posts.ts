@@ -21,12 +21,12 @@ export async function getPostList(): Promise<Post[]> {
         const { data, excerpt, content } = matter(fileContent, {
             excerpt_separator: '<!-- truncate-->',
         });
-        console.log(data);
 
         postList.push({
             id: fileName,
             slug: data.slug,
             title: data.title,
+            thumbnailUrl: data.image,
             author: {
                 name: data.author,
                 title: data.author_title,
@@ -39,7 +39,6 @@ export async function getPostList(): Promise<Post[]> {
             mdContent: content,
         });
     }
-    console.log(postList);
 
     return postList;
 }

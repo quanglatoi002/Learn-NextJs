@@ -14,16 +14,28 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings/lib';
 import remarkPrism from 'remark-prism';
 import Script from 'next/script';
+import { Seo } from '@/components/common/seo';
+import remarkImages from 'remark-images';
+
 export interface BlogPageProps {
     post: Post;
 }
 export default function PostDetailPage({ post }: BlogPageProps) {
+    const DEFAULT_IMG =
+        'https://images.unsplash.com/photo-1549923746-c502d488b3ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80';
     if (!post) return null;
     //để hiển thị nội dung  HTML trong TSX chúng ta sử dụng thuộc tính dangerouslySetInnerHTML
     return (
         <Box>
+            <Seo
+                data={{
+                    title: post.title,
+                    description: post.description,
+                    url: `${process.env.HOST_URL}/blog/${post.slug}`,
+                    thumbnailUrl: post.thumbnailUrl || DEFAULT_IMG,
+                }}
+            />
             <Container>
-                <h1>Blog Detail Page</h1>
                 <p>{post.title}</p>
                 <p>{post.author?.name}</p>
                 <p>{post.description}</p>
