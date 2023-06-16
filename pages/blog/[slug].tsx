@@ -2,13 +2,18 @@ import { Post } from '@/models';
 import { getPostList } from '@/utils/posts';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 //paste
-import { Container, Divider } from '@mui/material';
+import { Box, Container, Divider } from '@mui/material';
 import rehypeDocument from 'rehype-document';
 import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings/lib';
+import remarkPrism from 'remark-prism';
+import Script from 'next/script';
 export interface BlogPageProps {
     post: Post;
 }
@@ -16,16 +21,17 @@ export default function PostDetailPage({ post }: BlogPageProps) {
     if (!post) return null;
     //để hiển thị nội dung  HTML trong TSX chúng ta sử dụng thuộc tính dangerouslySetInnerHTML
     return (
-        <Container>
-            <h1>Blog Detail Page</h1>
-            <p>{post.title}</p>
-            <p>{post.author?.name}</p>
-            <p>{post.description}</p>
-            {/* <p>{post.mdContent}</p> */}
-
-            <Divider />
-            <div dangerouslySetInnerHTML={{ __html: post.htmlContent || '' }}></div>
-        </Container>
+        <Box>
+            <Container>
+                <h1>Blog Detail Page</h1>
+                <p>{post.title}</p>
+                <p>{post.author?.name}</p>
+                <p>{post.description}</p>
+                {/* <p>{post.mdContent}</p> */}
+                <div dangerouslySetInnerHTML={{ __html: post.htmlContent || '' }}></div>
+            </Container>
+            <Script src="/prism.js" strategy="afterInteractive"></Script>
+        </Box>
     );
 }
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -49,7 +55,11 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async (
     //parse md to html
     const file = await unified()
         .use(remarkParse)
+        .use(remarkToc, { heading: 'quang.*' })
+        .use(remarkPrism, { plugins: ['line-numbers'] })
         .use(remarkRehype)
+        .use(rehypeSlug)
+        .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
         .use(rehypeDocument, { title: 'Blog' })
         .use(rehypeFormat)
         .use(rehypeStringify)
