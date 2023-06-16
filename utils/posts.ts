@@ -34,7 +34,7 @@ export async function getPostList(): Promise<Post[]> {
                 avatarUrl: data.author_image_url,
             },
             tagList: data.tags,
-            publishedDate: new Date().getTime().toString(),
+            publishedDate: data.date,
             description: excerpt || '',
             mdContent: content,
         });

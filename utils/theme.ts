@@ -66,19 +66,26 @@ export let theme = createTheme({
             },
         },
         MuiLink: {
+            variants: [
+                {
+                    props: { ml: 2 },
+                    style: {
+                        color: 'black',
+                        '&:hover, &.active': {
+                            color: '#FF6464',
+                        },
+                    },
+                },
+            ],
             defaultProps: {
                 underline: 'none',
             },
             styleOverrides: {
                 root: {
                     color: 'black',
-                    '&:hover, &.active': {
-                        color: '#FF6464',
-                    },
                 },
             },
         },
-        MuiCard: {},
         MuiButton: {
             variants: [
                 {
