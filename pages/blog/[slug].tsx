@@ -1,20 +1,31 @@
 import { Post } from '@/models';
 import { getPostList } from '@/utils/posts';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+//paste
+import { Container, Divider } from '@mui/material';
+import rehypeDocument from 'rehype-document';
+import rehypeFormat from 'rehype-format';
+import rehypeStringify from 'rehype-stringify';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
 export interface BlogPageProps {
     post: Post;
 }
 export default function PostDetailPage({ post }: BlogPageProps) {
     if (!post) return null;
-
+    //để hiển thị nội dung  HTML trong TSX chúng ta sử dụng thuộc tính dangerouslySetInnerHTML
     return (
-        <div>
+        <Container>
             <h1>Blog Detail Page</h1>
             <p>{post.title}</p>
             <p>{post.author?.name}</p>
             <p>{post.description}</p>
-            <p>{post.mdContent}</p>
-        </div>
+            {/* <p>{post.mdContent}</p> */}
+
+            <Divider />
+            <div dangerouslySetInnerHTML={{ __html: post.htmlContent || '' }}></div>
+        </Container>
     );
 }
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -35,6 +46,15 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async (
     const post = postList.find((x) => x.slug === slug);
 
     if (!post) return { notFound: true };
+    //parse md to html
+    const file = await unified()
+        .use(remarkParse)
+        .use(remarkRehype)
+        .use(rehypeDocument, { title: 'Blog' })
+        .use(rehypeFormat)
+        .use(rehypeStringify)
+        .process(post.mdContent || '');
+    post.htmlContent = file.toString();
     return {
         props: {
             post,
