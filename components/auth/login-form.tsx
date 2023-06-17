@@ -1,21 +1,43 @@
-import { Box } from '@mui/material';
-import React from 'react';
+import { Box, Button, IconButton, InputAdornment } from '@mui/material';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { InputField } from '../form';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 export function LoginForm() {
+    const [showPassword, setShowPassword] = useState(false);
     const { control, handleSubmit } = useForm({
         defaultValues: {
-            username: 1,
-            password: 5,
+            username: '',
+            password: '',
         },
     });
     function handleLoginSubmit(values: any) {
-        console.log('login');
+        console.log(values);
     }
     return (
         <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
             <InputField name="username" control={control} />
-            <InputField name="password" control={control} />
+            <InputField
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                control={control}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={() => setShowPassword((x) => !x)}
+                                edge="end"
+                            >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+            />
+            <Button type="submit" variant="contained">
+                Login
+            </Button>
         </Box>
     );
 }
