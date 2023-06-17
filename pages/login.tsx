@@ -1,3 +1,4 @@
+import { LoginForm } from '@/components/auth';
 import { useAuth } from '@/hooks';
 import { useRouter } from 'next/router';
 import * as React from 'react';
@@ -40,6 +41,7 @@ export default function LoginPage() {
             <button onClick={handleGetProfileClick}>Get Profile</button>
             <button onClick={handleLogoutClick}>Logout</button>
             <button onClick={() => router.push('/about')}>Go to about</button>
+            <LoginForm />
         </div>
     );
 }
