@@ -39,7 +39,7 @@ export let theme = createTheme({
             primary: '#21243D',
         },
         background: {
-            paper: '#001150',
+            paper: '#ffffff',
         },
     },
     typography: {
@@ -83,6 +83,9 @@ export let theme = createTheme({
             styleOverrides: {
                 root: {
                     color: 'black',
+                    '&:hover, &.active': {
+                        color: '#FF6464',
+                    },
                 },
             },
         },

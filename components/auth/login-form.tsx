@@ -38,9 +38,10 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
     }
     return (
         <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
-            <InputField name="username" control={control} />
+            <InputField name="username" label="Username" control={control} />
             <InputField
                 type={showPassword ? 'text' : 'password'}
+                label="Password"
                 name="password"
                 control={control}
                 InputProps={{
@@ -57,7 +58,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
                     ),
                 }}
             />
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" fullWidth sx={{ mt: 3 }}>
                 Login
             </Button>
         </Box>
