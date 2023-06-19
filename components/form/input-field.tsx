@@ -26,6 +26,7 @@ export function InputField({
         name,
         control,
     });
+    //vd nếu như name là username thì control sẽ lấy đúng cái bộ này của username như field, fieldState => sau đó payload lên UI Control
     return (
         <TextField
             fullWidth
@@ -35,7 +36,10 @@ export function InputField({
             value={value}
             onChange={onChange}
             onBlur={onBlur}
+            //focus
             inputRef={ref}
+            error={!!error}
+            helperText={error?.message}
             {...rest}
         />
     );

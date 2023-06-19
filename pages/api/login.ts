@@ -27,6 +27,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
         //ko gửi cookie tới phía server
         req.headers.cookie = '';
         //ProxyReqCallback được phép can thiệp vào quá tình xử lý yêu cầu proxy trước khi gửi đến server target
+        //proxyRes:IncomingMessage
         const handleLoginResponse: ProxyReqCallback = (proxyRes: IncomingMessage, req, res) => {
             let body = '';
             proxyRes.on('data', function (chunk) {
@@ -35,6 +36,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
             //Xử lý dữ liệu từ phản hồi
             proxyRes.on('end', function () {
                 try {
+                    //proxyRes.statusCode
                     const isSuccess =
                         proxyRes.statusCode &&
                         proxyRes.statusCode >= 200 &&
