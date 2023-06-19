@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 //Chức năng chính của httpProxy là chuyển tiếp yêu cầu HTTP từ 1 máy khách đến 1 máy chủ khác.
 import httpProxy, { ProxyReqCallback } from 'http-proxy';
 import Cookies from 'cookies';
+import { IncomingMessage, ServerResponse } from 'http';
 
 type Data = {
     message: string;
@@ -25,13 +26,24 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
     return new Promise((resolve) => {
         //ko gửi cookie tới phía server
         req.headers.cookie = '';
-        const handleLoginResponse: ProxyReqCallback = (proxyRes, req, res, options) => {
+        //ProxyReqCallback được phép can thiệp vào quá tình xử lý yêu cầu proxy trước khi gửi đến server target
+        const handleLoginResponse: ProxyReqCallback = (proxyRes: IncomingMessage, req, res) => {
             let body = '';
             proxyRes.on('data', function (chunk) {
                 body += chunk;
             });
+            //Xử lý dữ liệu từ phản hồi
             proxyRes.on('end', function () {
                 try {
+                    const isSuccess =
+                        proxyRes.statusCode &&
+                        proxyRes.statusCode >= 200 &&
+                        proxyRes.statusCode < 300;
+                    console.log(isSuccess);
+                    if (!isSuccess) {
+                        (res as NextApiResponse).status(proxyRes.statusCode || 500).json({ body });
+                        return resolve(true);
+                    }
                     const { accessToken, expiredAt } = JSON.parse(body);
                     //convert token to cookies
                     const cookies = new Cookies(req, res, {
@@ -51,7 +63,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
         };
         // sự kiện proxyRes, khi client req forward the "target" server and the "target" server send back a res, lúc này "proxyRes" được kích hoạt
 
-        // proxy.once('proxyRes', handleLoginResponse);
+        proxy.once('proxyRes', (proxyRes: any) => handleLoginResponse(proxyRes, req, res, {}));
         proxy.web(req, res, {
             target: process.env.API_URL,
             changeOrigin: true,
