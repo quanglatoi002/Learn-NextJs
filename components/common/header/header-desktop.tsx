@@ -1,5 +1,5 @@
 import { Box, Container, Stack, Link as MuiLink } from '@mui/material';
-import * as React from 'react';
+import react, { useEffect, useState } from 'react';
 import { ROUTE_LIST } from './router';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,6 +11,18 @@ export function HeaderDesktop() {
     const { profile, logout } = useAuth();
     const isLoggedIn = Boolean(profile?.username);
     const routeList = ROUTE_LIST.filter((route) => !route.requireLogin || isLoggedIn);
+    //C1
+    // const [routeList, setRouteList] = useState(() =>
+    //     ROUTE_LIST.filter((route) => !route.requireLogin)
+    // );
+    //- Server ở lần render đầu tiên menu ko yêu cầu login(A)
+    // Client - nhận kq từ server trả về với not require login(B)
+    // client - ở lúc này bên side clients accept login và trả về profile.username, thì isLoggedIn thì nhận value = true và useEffect nhận được giá trị thay đổi của isLoggedIn nên đã setRouterList() <=> re-render lại, ở re-render này thì menu requireLogin
+
+    // useEffect(() => {
+    //     //sau lần đầu bên phía server gửi lên client
+    //     setRouteList(ROUTE_LIST.filter((route) => !route.requireLogin || isLoggedIn));
+    // }, [isLoggedIn]);
     return (
         <Box display={{ xs: 'none', md: 'block' }} py={2}>
             <Container>

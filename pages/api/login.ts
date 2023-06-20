@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 //Chức năng chính của httpProxy là chuyển tiếp yêu cầu HTTP từ 1 máy khách đến 1 máy chủ khác.
-import httpProxy, { ProxyReqCallback } from 'http-proxy';
 import Cookies from 'cookies';
-import { IncomingMessage, ServerResponse } from 'http';
+import { IncomingMessage } from 'http';
+import httpProxy, { ProxyReqCallback } from 'http-proxy';
 
 type Data = {
     message: string;
@@ -28,7 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
         req.headers.cookie = '';
         //ProxyReqCallback được phép can thiệp vào quá tình xử lý yêu cầu proxy trước khi gửi đến server target
         //proxyRes:IncomingMessage
-        const handleLoginResponse: ProxyReqCallback = (proxyRes: IncomingMessage, req, res) => {
+        const handleLoginResponse: ProxyReqCallback = (proxyRes, req, res) => {
             let body = '';
             proxyRes.on('data', function (chunk) {
                 body += chunk;
@@ -38,12 +38,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
                 try {
                     //proxyRes.statusCode
                     const isSuccess =
-                        proxyRes.statusCode &&
-                        proxyRes.statusCode >= 200 &&
-                        proxyRes.statusCode < 300;
+                        res.statusCode && res.statusCode >= 200 && res.statusCode < 300;
                     console.log(isSuccess);
                     if (!isSuccess) {
-                        (res as NextApiResponse).status(proxyRes.statusCode || 500).json({ body });
+                        (res as NextApiResponse).status(res.statusCode || 500).json({ body });
                         return resolve(true);
                     }
                     const { accessToken, expiredAt } = JSON.parse(body);

@@ -20,7 +20,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         password: yup
             .string()
             .required('Pls enter password')
-            .min(4, 'password should have at least 6 characters'),
+            .min(6, 'password should have at least 6 characters'),
     });
     //show/hide
     const [showPassword, setShowPassword] = useState(false);

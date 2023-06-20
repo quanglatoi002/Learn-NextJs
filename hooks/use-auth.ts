@@ -1,7 +1,16 @@
 import { authApi } from '@/api-client';
-import { LoginPayload } from '@/models';
+import { StorageKeys } from '@/constants';
+import { LoginPayload, UserProfile } from '@/models';
 import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/_internal';
+
+function getUserInfo(): UserProfile | null {
+    try {
+        return JSON.parse(localStorage.getItem(StorageKeys.USER_INFO) || '');
+    } catch (error) {
+        return null;
+    }
+}
 
 //options?: còn được coi là tùy chọn và có thể bỏ qua
 export function useAuth(options?: Partial<PublicConfiguration>) {
@@ -14,6 +23,17 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
         dedupingInterval: 60 * 60 * 1000,
         revalidateOnFocus: false,
         ...options,
+        fallbackData: getUserInfo(),
+        onSuccess(data) {
+            //save user info to local storage
+            //convert object -> JSON
+            localStorage.setItem(StorageKeys.USER_INFO, JSON.stringify(data));
+        },
+        onError(err) {
+            //logout
+            localStorage.removeItem(StorageKeys.USER_INFO);
+            logout();
+        },
     });
 
     console.log({ profile, error });
@@ -27,7 +47,9 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
     async function logout() {
         await authApi.logout();
         // khi thay đổi giá trị thì tránh sử dụng undefined
-        mutate({}, false);
+        mutate(null, false);
+        //xóa ra khỏi localStorage
+        localStorage.removeItem(StorageKeys.USER_INFO);
     }
     return { profile, error, login, logout, firstLoading };
 }
