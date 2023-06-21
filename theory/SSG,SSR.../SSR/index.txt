@@ -8,9 +8,9 @@
         Máy chủ này sẽ cung cấp tài nguyên từ bộ nhớ cache của nó, nếu có. Nếu không, nó sẽ tải tài nguyên từ máy chủ gốc và lưu vào cache để các yêu cầu tiếp theo có thể được phục vụ từ cache
 
 2.Using cache
-    Using s-maxage=5(Sau lần đầu tiên chúng ta reload lại thì trong khoảng 5s tiếp theo mà chúng ta có reload lại đi nữa thì kết quả vẫn dữ nguyên bên phía client nhưng bên server đã thay đổi rồi. Nếu qua 5s rồi we mới reload lại thì kết quả sẽ lập tức thay đổi)
-    .Keep the page FRESH in 5 seconds, after that call getServerSideProps again on page request
-    Khi chỉ định rằng cache chia sẻ(thường được sử dụng bởi CDN hoặc reverse proxy) nên cache phản hồi trong tối đa 5 giây, sau 5 giây sẽ mất hiệu lực
+    Using s-maxage=10(Sau lần đầu tiên chúng ta reload lại thì trong khoảng 10s tiếp theo mà chúng ta có reload lại đi nữa thì kết quả vẫn dữ nguyên bên phía client nhưng bên server đã thay đổi rồi. Nếu qua 10s rồi we mới reload lại thì kết quả sẽ lập tức thay đổi)
+    .Keep the page FRESH in 10 seconds, after that call getServerSideProps again on page request
+    Khi chỉ định rằng cache chia sẻ(thường được sử dụng bởi CDN hoặc reverse proxy) nên cache phản hồi trong tối đa 10 giây, sau 10 giây sẽ mất hiệu lực
 
     ==> Cái hay ở đây là nó cho phép bạn đặt time caching ngắn hơn cho cache chia sẻ để đảm bảo rằng cache luôn được cập nhật với nội dung mới nhất từ máy chủ nguồn
 
