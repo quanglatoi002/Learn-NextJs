@@ -43,3 +43,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
         // res.status(200).json({ name: 'John Doe' });
     });
 }
+
+// quá trình hoạt động
+//browser:localhost:3000/api/students
+//Next server: /api/works --> proxy to //https://js-post-api.herokuapp.com/api/sutdents
+//API server: //https://js-post-api.herokuapp.com/api/sutdents
