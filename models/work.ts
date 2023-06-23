@@ -8,3 +8,6 @@ export interface Work {
     updatedAt: string;
     thumbnailUrl: string;
 }
+export interface WorkFiltersPayload {
+    search: string;
+}

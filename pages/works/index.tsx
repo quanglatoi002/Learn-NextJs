@@ -1,6 +1,6 @@
 import { workApi } from '@/api-client';
 import { MainLayout } from '@/components/layout';
-import { WorkList, WorkSkeleton } from '@/components/work';
+import { WorkFilters, WorkList, WorkSkeleton } from '@/components/work';
 import { useWorkList } from '@/hooks';
 import { ListParams } from '@/models';
 import { Box, Button, Container, Skeleton, Typography } from '@mui/material';
@@ -41,7 +41,7 @@ export default function WorksPage(props: WorksPageProps) {
                         Work
                     </Typography>
                 </Box>
-
+                <WorkFilters />
                 <WorkList workList={data?.data || []} loading={isLoading} />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Button onClick={handlePrevClick} variant="contained">

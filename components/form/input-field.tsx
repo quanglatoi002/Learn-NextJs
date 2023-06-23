@@ -1,8 +1,9 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { Control, useController } from 'react-hook-form';
 
+//InputField sẽ chứa toàn bộ thuộc tính của TextFieldProps và thêm 2 thuộc tính name, control
 export type InputFieldProps = TextFieldProps & {
     name: string;
     control: Control<any>;
@@ -33,7 +34,11 @@ export function InputField({
             margin="normal"
             name={name}
             value={value}
-            onChange={onChange}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChange(event);
+                //Kiểm tra xem externalOnChange có tồn tại hay không trước khi gọi nó và truyền event
+                externalOnChange?.(event);
+            }}
             onBlur={onBlur}
             //focus
             inputRef={ref}
