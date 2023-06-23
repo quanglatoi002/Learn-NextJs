@@ -11,7 +11,7 @@ export function Footer() {
         { icon: LinkedIn, url: 'http://google.com' },
     ];
     return (
-        <Box component="footer" py={2} textAlign="center">
+        <Box component="footer" pb={2} pt={4} textAlign="center">
             <Stack direction="row" justifyContent="center">
                 {socialLinks.map((item, index) => (
                     <Box
