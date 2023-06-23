@@ -7,4 +7,4 @@ Public page with no data: SSG
 Public page with data and can be updated from CMS: ISR
 Private pages: SSG + CSR
 
--- cách thức hoạt động của ISR: we đặt value validate là 5s rồi sau đó qua trình duyệt reload lại trang để có thể cập nhật lại dữ liệu đã update bên postman. Ở lần reload đầu tiên thì bên phía client-side giá trị ban đầu vẫn giữ nguyên mà ko thay đổi, nhưng bên trong nó âm thầm thay đổi giá trị mới và lần reload tiếp theo sẽ cập nhật giá trị mới.
+-- cách thức hoạt động của ISR: we đặt value validate là 300s rồi sau đó qua trình duyệt reload lại trang để có thể cập nhật lại dữ liệu đã update bên postman. Ở lần reload đầu tiên thì bên phía client-side giá trị ban đầu vẫn giữ nguyên mà ko thay đổi, nhưng bên trong nó âm thầm thay đổi giá trị mới và lần reload tiếp theo sẽ cập nhật giá trị mới.

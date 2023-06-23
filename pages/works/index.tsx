@@ -1,14 +1,15 @@
 import { workApi } from '@/api-client';
 import { MainLayout } from '@/components/layout';
+import { WorkList } from '@/components/work';
 import { useWorkList } from '@/hooks';
 import { ListParams } from '@/models';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Container, Skeleton, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 
 export interface WorksPageProps {}
 
 export default function WorksPage(props: WorksPageProps) {
-    const [filters, setFilters] = useState<Partial<ListParams>>({ _page: 1, _limit: 10 });
+    const [filters, setFilters] = useState<Partial<ListParams>>({ _page: 1, _limit: 3 });
 
     const { data, isLoading } = useWorkList({ params: filters });
     console.log({ data, isLoading });
@@ -20,6 +21,12 @@ export default function WorksPage(props: WorksPageProps) {
     //         } catch (error) {}
     //     })();
     // }, []);
+    function handlePrevClick() {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            _page: (prevFilters?._page || 0) - 1,
+        }));
+    }
     function handleNextClick() {
         setFilters((prevFilters) => ({
             ...prevFilters,
@@ -27,14 +34,32 @@ export default function WorksPage(props: WorksPageProps) {
         }));
     }
     return (
-        <div>
-            Works Page
-            <Box>
-                <Button onClick={handleNextClick} variant="contained">
-                    Next Page
-                </Button>
-            </Box>
-        </div>
+        <Box>
+            <Container>
+                <Box mb={4} mt={8}>
+                    <Typography component="h1" variant="h3" fontWeight="bold">
+                        Work
+                    </Typography>
+                </Box>
+                {isLoading ? (
+                    <Box textAlign={'center'}>
+                        <Skeleton variant="text" width="auto" />
+                        <Skeleton variant="text" width="auto" />
+                        <Skeleton variant="text" width="auto" />
+                    </Box>
+                ) : (
+                    <WorkList workList={data?.data || []} />
+                )}
+                <Box>
+                    <Button onClick={handlePrevClick} variant="contained">
+                        Prev Page
+                    </Button>
+                    <Button onClick={handleNextClick} variant="contained">
+                        Next Page
+                    </Button>
+                </Box>
+            </Container>
+        </Box>
     );
 }
 WorksPage.Layout = MainLayout;

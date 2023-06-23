@@ -20,7 +20,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
     return new Promise((resolve) => {
         ////convert cookies to header authorization
         const cookies = new Cookies(req, res);
+        //take cookies convert to accessToken
         const accessToken = cookies.get('access_token');
+        //automation take cookies convert HEADER authorization
         if (accessToken) {
             req.headers.Authorization = `Bearer ${accessToken}`;
         }

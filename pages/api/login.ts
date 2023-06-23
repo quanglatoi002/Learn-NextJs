@@ -24,9 +24,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
     }
 
     return new Promise((resolve) => {
-        //ko gửi cookie tới phía server
+        //ko gửi cookie tới phía API server
         req.headers.cookie = '';
-        //ProxyReqCallback được phép can thiệp vào quá tình xử lý yêu cầu proxy trước khi gửi đến server target
+        //ProxyReqCallback được phép can thiệp vào quá trình xử lý yêu cầu proxy trước khi gửi đến server target
         //proxyRes:IncomingMessage
         const handleLoginResponse: ProxyReqCallback = (proxyRes, req, res) => {
             let body = '';
@@ -44,11 +44,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
                         (res as NextApiResponse).status(res.statusCode || 500).json({ body });
                         return resolve(true);
                     }
+                    //take accessToken
                     const { accessToken, expiredAt } = JSON.parse(body);
                     //convert token to cookies
                     const cookies = new Cookies(req, res, {
                         secure: process.env.NODE_ENV !== 'development',
                     });
+                    //accessToken to cookies
                     cookies.set('access_token', accessToken, {
                         httpOnly: true,
                         sameSite: 'lax',

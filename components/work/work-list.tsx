@@ -1,15 +1,21 @@
 import { Work } from '@/models';
-import { Box, Divider, Stack, Typography } from '@mui/material';
-import React, { Fragment } from 'react';
-import Image from 'next/legacy/image';
+import { Box, Divider } from '@mui/material';
+import { Fragment } from 'react';
 import { WorkCard } from './work-card';
+import Image from 'next/legacy/image';
 
 export interface WorkListProps {
     workList: Work[];
 }
 
 export function WorkList({ workList }: WorkListProps) {
-    if (workList.length === 0) return null;
+    console.log(workList);
+    if (workList.length === 0)
+        return (
+            <Box textAlign={'center'}>
+                <Image src={''} width={246} height={180} layout="responsive" alt="work thumbnail" />
+            </Box>
+        );
 
     return (
         <Box>
