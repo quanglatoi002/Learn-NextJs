@@ -8,3 +8,6 @@ Cấu trúc của 1 page
                     Form Fields - Base Control
             Eg: InputField, PhotoField...
 
+                                ||
+                        UI Control
+                Eg: input, checkbox...

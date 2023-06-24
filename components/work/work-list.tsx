@@ -26,7 +26,7 @@ export function WorkList({ workList, loading }: WorkListProps) {
     console.log(workList);
     if (workList.length === 0)
         return (
-            <Box textAlign={'center'}>
+            <Box textAlign={'center'} mt={6}>
                 <Image
                     src={
                         'https://res.cloudinary.com/dhzrnosrb/image/upload/v1670995696/nodejs/iqurjgjhc8nyf13bz5j1.jpg'

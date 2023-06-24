@@ -25,13 +25,11 @@ export function WorkFilters({ onSubmit }: WorkFiltersProps) {
 
     async function handleLoginSubmit(payload: WorkFiltersPayload) {
         console.log('form submit', payload);
-        // await onSubmit?.(payload);
+        await onSubmit?.(payload);
     }
     //debounce
-    function handleSearchChange(value: string) {
-        console.log('debounce', value);
-    }
-    const debounceSearchChange = debounce(handleSearchChange, 350);
+    const debounceSearchChange = debounce(handleSubmit(handleLoginSubmit), 350);
+
     return (
         <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
             <InputField
@@ -48,7 +46,7 @@ export function WorkFilters({ onSubmit }: WorkFiltersProps) {
                 }}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     console.log('change', event.target.value);
-                    debounceSearchChange(event.target.value);
+                    debounceSearchChange();
                 }}
             />
         </Box>

@@ -34,6 +34,7 @@ export function InputField({
             margin="normal"
             name={name}
             value={value}
+            //ở mỗi lần bạn gõ thì ko phải chỉ trigger externalOnChange ở bên ngoài mà ở bên trong nội bộ đã tự động cập nhật value nội bộ của nó rồi
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 onChange(event);
                 //Kiểm tra xem externalOnChange có tồn tại hay không trước khi gọi nó và truyền event

@@ -1,10 +1,9 @@
-import { workApi } from '@/api-client';
 import { MainLayout } from '@/components/layout';
-import { WorkFilters, WorkList, WorkSkeleton } from '@/components/work';
+import { WorkFilters, WorkList } from '@/components/work';
 import { useWorkList } from '@/hooks';
-import { ListParams } from '@/models';
-import { Box, Button, Container, Skeleton, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { ListParams, WorkFiltersPayload } from '@/models';
+import { Box, Button, Container, Typography } from '@mui/material';
+import { useState } from 'react';
 
 export interface WorksPageProps {}
 
@@ -33,6 +32,15 @@ export default function WorksPage(props: WorksPageProps) {
             _page: (prevFilters?._page || 0) + 1,
         }));
     }
+    //nhận dữ liệu từ thành phần con payload lên
+    function handleFiltersChange(newFilters: WorkFiltersPayload) {
+        console.log('page-lever', newFilters);
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            _page: 1,
+            title_like: newFilters.search,
+        }));
+    }
     return (
         <Box>
             <Container>
@@ -41,7 +49,7 @@ export default function WorksPage(props: WorksPageProps) {
                         Work
                     </Typography>
                 </Box>
-                <WorkFilters />
+                <WorkFilters onSubmit={handleFiltersChange} />
                 <WorkList workList={data?.data || []} loading={isLoading} />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Button onClick={handlePrevClick} variant="contained">
