@@ -27,7 +27,7 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
     });
 
     async function handleLoginSubmit(payload: WorkFiltersPayload) {
-        console.log('form submit', payload);
+        console.log('form submit to Pages work ', payload);
         await onSubmit?.(payload);
     }
 

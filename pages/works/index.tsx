@@ -2,7 +2,7 @@ import { MainLayout } from '@/components/layout';
 import { WorkFilters, WorkList } from '@/components/work';
 import { useWorkList } from '@/hooks';
 import { ListParams, WorkFiltersPayload } from '@/models';
-import { Box, Container, Pagination, Stack, Typography } from '@mui/material';
+import { Box, Container, Pagination, Skeleton, Stack, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
 
@@ -11,18 +11,21 @@ export interface WorksPageProps {}
 export default function WorksPage(props: WorksPageProps) {
     const router = useRouter();
     //router.query sẽ là 1 đối tượng{_page:1, _limit:3}
+    // sử dụng router.query để nhận giá trị của title_like
     const filters: Partial<ListParams> = {
         _page: 1,
         _limit: 3,
         ...router.query,
     };
-    //giải quyết vấn đề hiện lại kết quả sau khi render lại
+    console.log(router.query);
+
+    //giải quyết vấn đề hiện kết quả sau khi render lại
+
     const initFiltersPayload: WorkFiltersPayload = {
         search: filters.title_like || '',
     };
-    console.log('page', { search: filters.title_like, enabled: router.isReady });
     //useSWR để lấy api, useWorkList ở hook gọi tới work-api đã được định nghĩa ở api-client. Trong work-api nhận vào cho mình {data: Array<Work>, pagination}
-    //giải quyết vấn đề lần render đầu tiên lun luôn là undefined
+    //giải quyết vấn đề lần render đầu tiên lun luôn là undefined. lần đầu render isReady = false
     const { data, isLoading } = useWorkList({ params: filters, enabled: router.isReady });
     //lấy totalRows, limit, page trong data.pagination
     const { _totalRows, _limit, _page } = data?.pagination || {};
@@ -66,13 +69,20 @@ export default function WorksPage(props: WorksPageProps) {
                         Work
                     </Typography>
                 </Box>
-                {router.isReady && (
+
+                {router.isReady ? (
                     <WorkFilters
                         initialValues={initFiltersPayload}
                         onSubmit={handleFiltersChange}
                     />
+                ) : (
+                    <Skeleton
+                        variant="rectangular"
+                        height={40}
+                        sx={{ display: 'inline-block', mt: 2, width: '100%', mb: 1 }}
+                    />
                 )}
-                <WorkList workList={data?.data || []} loading={isLoading} />
+                <WorkList workList={data?.data || []} loading={!router.isReady || isLoading} />
                 {totalPages > 0 && (
                     <Stack alignItems="center">
                         <Pagination count={totalPages} page={_page} onChange={handlePageChange} />
