@@ -8,11 +8,12 @@ import { InputField } from '../form';
 import { ChangeEvent, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 export interface WorkFiltersProps {
+    initialValues?: WorkFiltersPayload;
     //payload nhận kiểu trả về void
     onSubmit?: (payload: WorkFiltersPayload) => void;
 }
 
-export function WorkFilters({ onSubmit }: WorkFiltersProps) {
+export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
     //validation
     const schema = yup.object().shape({});
     //useForm
@@ -20,6 +21,7 @@ export function WorkFilters({ onSubmit }: WorkFiltersProps) {
     const { control, handleSubmit } = useForm<WorkFiltersPayload>({
         defaultValues: {
             search: '',
+            ...initialValues,
         },
         resolver: yupResolver(schema),
     });
@@ -47,7 +49,6 @@ export function WorkFilters({ onSubmit }: WorkFiltersProps) {
                     ),
                 }}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    console.log('change', event.target.value);
                     debounceSearchChange();
                 }}
             />

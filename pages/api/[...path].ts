@@ -17,7 +17,7 @@ export const config = {
 const proxy = httpProxy.createProxyServer();
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<any>) {
-    return new Promise((resolve) => {
+    return new Promise(() => {
         ////convert cookies to header authorization
         const cookies = new Cookies(req, res);
         //take cookies convert to accessToken
@@ -38,10 +38,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<any>) 
             selfHandleResponse: false, // điều này có nghĩa là Next.js sẽ tiếp tục xử lý phản hồi từ máy chủ phía Next.js và trả kết quả cho trình duyệt mà ko yêu cầu ứng dụng của bạn thực hiện xử lý phản hồi.
         });
         //once chỉ bắt sự kiện 1 lần duy nhất
-        proxy.once('proxyRes', () => {
-            // res.status(200).json({ name: 'John Doe' });
-            resolve(true);
-        });
+        // proxy.once('proxyRes', () => {
+        //     // res.status(200).json({ name: 'John Doe' });
+        //     resolve(true);
+        // });
         // res.status(200).json({ name: 'John Doe' });
     });
 }
