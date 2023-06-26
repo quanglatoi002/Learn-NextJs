@@ -2,36 +2,26 @@ import { MainLayout } from '@/components/layout';
 import { WorkFilters, WorkList } from '@/components/work';
 import { useWorkList } from '@/hooks';
 import { ListParams, WorkFiltersPayload } from '@/models';
-import { Box, Button, Container, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Box, Container, Pagination, Stack, Typography } from '@mui/material';
+import { ChangeEvent, useState } from 'react';
 
 export interface WorksPageProps {}
 
 export default function WorksPage(props: WorksPageProps) {
     const [filters, setFilters] = useState<Partial<ListParams>>({ _page: 1, _limit: 3 });
 
+    //useSWR để lấy api, useWorkList ở hook gọi tới work-api đã được định nghĩa ở api-client. Trong work-api nhận vào cho mình {data: Array<Work>, pagination}
     const { data, isLoading } = useWorkList({ params: filters });
-    console.log({ data, isLoading });
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             const workList = await workApi.getAll({ _page: 1 });
-    //             console.log({ workList });
-    //         } catch (error) {}
-    //     })();
-    // }, []);
-    function handlePrevClick() {
+    //lấy totalRows, limit, page trong data.pagination
+    const { _totalRows, _limit, _page } = data?.pagination || {};
+    const totalPages = _totalRows ? Math.ceil(_totalRows / _limit) : 0;
+    //handle page
+    const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
         setFilters((prevFilters) => ({
             ...prevFilters,
-            _page: (prevFilters?._page || 0) - 1,
+            _page: value,
         }));
-    }
-    function handleNextClick() {
-        setFilters((prevFilters) => ({
-            ...prevFilters,
-            _page: (prevFilters?._page || 0) + 1,
-        }));
-    }
+    };
     //nhận dữ liệu từ thành phần con payload lên
     function handleFiltersChange(newFilters: WorkFiltersPayload) {
         console.log('page-lever', newFilters);
@@ -51,14 +41,11 @@ export default function WorksPage(props: WorksPageProps) {
                 </Box>
                 <WorkFilters onSubmit={handleFiltersChange} />
                 <WorkList workList={data?.data || []} loading={isLoading} />
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Button onClick={handlePrevClick} variant="contained">
-                        Prev Page
-                    </Button>
-                    <Button onClick={handleNextClick} variant="contained">
-                        Next Page
-                    </Button>
-                </Box>
+                {totalPages > 0 && (
+                    <Stack alignItems="center">
+                        <Pagination count={totalPages} page={_page} onChange={handlePageChange} />
+                    </Stack>
+                )}
             </Container>
         </Box>
     );
