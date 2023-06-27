@@ -38,7 +38,7 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
         <Box component="form" onSubmit={handleSubmit(handleLoginSubmit)}>
             <InputField
                 name="search"
-                placeholder="search"
+                placeholder="search work"
                 label="Username"
                 control={control}
                 InputProps={{
@@ -53,9 +53,15 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
                 }}
             />
             <AutocompleteField
-                name="tagList_search"
-                placeholder="filter by cate"
+                //[{object}]
+                //trường dữ liệu name: path<K> lúc này là path<WorkFiltersPayload>
+                name="selectedTagList"
+                label="Filter by category"
+                placeholder="Categories"
                 control={control}
+                options={[{ title: 'quang', key: 'a' }]}
+                getOptionLabel={(option) => (typeof option === 'string' ? option : option.key)}
+                isOptionEqualToValue={(option, value) => option.key === value.key}
             />
         </Box>
     );

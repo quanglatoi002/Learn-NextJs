@@ -1,14 +1,14 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { ChangeEvent } from 'react';
-import { Control, useController } from 'react-hook-form';
+import { Control, FieldValues, Path, useController } from 'react-hook-form';
 
 //InputField sẽ chứa toàn bộ thuộc tính của TextFieldProps và thêm 2 thuộc tính name, control
-export type InputFieldProps = TextFieldProps & {
-    name: string;
-    control: Control<any>;
+export type InputFieldProps<T extends FieldValues> = TextFieldProps & {
+    name: Path<T>; // Path<T> là giá trị của biến name nhận được ph giống trong model vd search: string thì ghi nhận từ đối số thì name = 'search' thì mới đúng
+    control: Control<T>;
 };
-export function InputField({
+export function InputField<T extends FieldValues>({
     name,
     control,
     onChange: externalOnChange,
@@ -16,7 +16,7 @@ export function InputField({
     ref: externalRef,
     value: externalValue,
     ...rest
-}: InputFieldProps) {
+}: InputFieldProps<T>) {
     //control chứa nội dung của tất cả những cái control mà nó dựa vào cái name này để lấy đúng ra cái onChange, value cho từng cái control mà nó mong muốn
     //field để liên kết tới các trường nhập liệu
     const {
