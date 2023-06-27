@@ -4,7 +4,7 @@ import { Search } from '@mui/icons-material';
 import { Box, InputAdornment, debounce } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { InputField } from '../form';
+import { AutocompleteField, InputField } from '../form';
 import { ChangeEvent, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 export interface WorkFiltersProps {
@@ -51,6 +51,11 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     debounceSearchChange();
                 }}
+            />
+            <AutocompleteField
+                name="tagList_search"
+                placeholder="filter by cate"
+                control={control}
             />
         </Box>
     );

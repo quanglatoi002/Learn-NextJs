@@ -79,7 +79,13 @@ export default function WorksPage(props: WorksPageProps) {
                     <Skeleton
                         variant="rectangular"
                         height={40}
-                        sx={{ display: 'inline-block', mt: 2, width: '100%', mb: 1 }}
+                        sx={{
+                            display: 'inline-block',
+                            mt: 2,
+                            width: '100%',
+                            mb: 1,
+                            verticalAlign: 'middle',
+                        }}
                     />
                 )}
                 <WorkList workList={data?.data || []} loading={!router.isReady || isLoading} />
