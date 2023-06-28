@@ -2,11 +2,10 @@ import { WorkFiltersPayload } from '@/models';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Search } from '@mui/icons-material';
 import { Box, InputAdornment, debounce } from '@mui/material';
+import { ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { AutocompleteField, InputField } from '../form';
-import { ChangeEvent, useState } from 'react';
-import Pagination from '@mui/material/Pagination';
 export interface WorkFiltersProps {
     initialValues?: WorkFiltersPayload;
     //payload nhận kiểu trả về void
@@ -21,6 +20,7 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
     const { control, handleSubmit } = useForm<WorkFiltersPayload>({
         defaultValues: {
             search: '',
+            selectedTagList: [],
             ...initialValues,
         },
         resolver: yupResolver(schema),
@@ -59,9 +59,13 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
                 label="Filter by category"
                 placeholder="Categories"
                 control={control}
-                options={[{ title: 'quang', key: 'a' }]}
+                options={[
+                    { title: 'quang', key: 'a' },
+                    { title: 'frontend', key: 'fe' },
+                ]}
                 getOptionLabel={(option) => (typeof option === 'string' ? option : option.key)}
                 isOptionEqualToValue={(option, value) => option.key === value.key}
+                onChange={() => debounceSearchChange()}
             />
         </Box>
     );
