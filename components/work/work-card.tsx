@@ -1,4 +1,5 @@
 import { Work } from '@/models';
+import { heebo, roboto } from '@/utils';
 import { Box, Chip, Stack, Typography } from '@mui/material';
 import Image from 'next/legacy/image';
 import * as React from 'react';

@@ -18,8 +18,12 @@ interface MyDocumentProps extends DocumentProps {
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
     return (
-        <Html lang="en" className={heebo.className}>
+        <Html lang="en" className={roboto.className}>
             <Head>
+                <style>
+                    {`@import
+                    url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')`}
+                </style>
                 {/* PWA primary color */}
                 <meta name="theme-color" content={theme.palette.primary.main} />
                 <link rel="shortcut icon" href="/favicon.ico" />
@@ -29,6 +33,12 @@ export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
             <body>
                 <Main />
                 <NextScript />
+
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxskSgH5tt7l5JQ-HR6QPq8Qv3kzbTxh8&callback=Function.prototype&libraries=places&v=weekly"
+                    async
+                    defer
+                ></script>
             </body>
         </Html>
     );

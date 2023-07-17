@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { InputField } from '../form';
 export interface LoginFormProps {
+    //onSubmit là 1 hàm tham số được nhận từ login.tsx chuyển xuống với đối số của hầm được gửi xuống là (payload: LoginPayload) nên khi hàm onSumit nhận giá trí thì cũng phải là hàm với tham số đó onSubmit?: (payload: LoginPayload)
     onSubmit?: (payload: LoginPayload) => void;
 }
 
@@ -37,7 +38,7 @@ export function LoginForm({ onSubmit }: LoginFormProps) {
         },
         resolver: yupResolver(schema),
     });
-
+    //khi có sự thay đổi thông tin user thì hàm handleLoginSubmit đc gọi và truyền qua đối số payload
     async function handleLoginSubmit(payload: LoginPayload) {
         await onSubmit?.(payload);
     }

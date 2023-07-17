@@ -3,6 +3,8 @@ import Link from 'next/link';
 import MuiLink from '@mui/material/Link';
 import { PostCard } from './post-card';
 import { Post } from '@/models';
+import Map from '../../constants/Map';
+
 export function RecentPosts() {
     const postList: Post[] = [
         {
@@ -31,6 +33,7 @@ export function RecentPosts() {
             sx={{ bgcolor: 'secondary.light', color: 'text.primary', pb: '30px' }}
         >
             <Container>
+                <h1>Trangchủ Next.js với Google Maps</h1>
                 <Stack
                     direction="row"
                     justifyContent={{ xs: 'center', md: 'space-between' }}

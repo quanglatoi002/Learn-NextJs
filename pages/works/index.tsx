@@ -5,11 +5,10 @@ import { ListParams, WorkFiltersPayload } from '@/models';
 import { Box, Container, Pagination, Skeleton, Stack, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
-
 export interface WorksPageProps {}
-
 export default function WorksPage(props: WorksPageProps) {
     const router = useRouter();
+    console.log(router);
     //router.query sẽ là 1 đối tượng{_page:1, _limit:3}
     // sử dụng router.query để nhận giá trị của title_like
     const filters: Partial<ListParams> = {
@@ -32,6 +31,10 @@ export default function WorksPage(props: WorksPageProps) {
     const { _totalRows, _limit, _page } = data?.pagination || {};
     const totalPages = _totalRows ? Math.ceil(_totalRows / _limit) : 0;
     //handle page
+    // ChangeEvent đc biểu diễn cho 'change' trong DOM. Nó bao gồm các thuộc tính như target, currentTarget
+    // ==> lưu ý khi bạn xử lý sự kiện,bạn có thể sử dụng phương thức của ChangeEvent để try cập về info sự kiện. vd  event.targer.value
+    // sử dụng MouseEvent<HTMLButtonElement> cho sự kiện onClick
+    // sử dụng FormEvent<HTMLFormElement> cho sử dụng onSubmit
     const handlePageChange = (event: ChangeEvent<unknown>, value: number) => {
         router.push(
             {
@@ -73,6 +76,7 @@ export default function WorksPage(props: WorksPageProps) {
 
                 {router.isReady ? (
                     <WorkFilters
+                        data={data?.data}
                         initialValues={initFiltersPayload}
                         onSubmit={handleFiltersChange}
                     />

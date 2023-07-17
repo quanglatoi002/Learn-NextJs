@@ -1,3 +1,4 @@
+import { Work } from '@/models';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import { TextField } from '@mui/material';
@@ -24,6 +25,7 @@ export type AutocompleteFieldProps<T, K extends FieldValues> = Partial<
     options: T[];
     getOptionLabel: (option: T) => string;
     onChange: (selectedOptions: T[]) => void;
+    // data: Work[];
 };
 export function AutocompleteField<T, K extends FieldValues>({
     name,
@@ -34,6 +36,7 @@ export function AutocompleteField<T, K extends FieldValues>({
     options,
     getOptionLabel,
     isOptionEqualToValue,
+    // data,
     ...rest
 }: AutocompleteFieldProps<T, K>) {
     //control chứa nội dung của tất cả những cái control mà nó dựa vào cái name này để lấy đúng ra cái onChange, value cho từng cái control mà nó mong muốn

@@ -32,6 +32,7 @@ export function HeaderDesktop() {
                             key={route.path}
                             href={route.path}
                             sx={{ ml: 2, fontWeight: 'medium', underline: 'none' }}
+                            //xây dựng 1 chuỗi các lớp CSS dựa trên điều kiện
                             className={clsx({ active: router.pathname === route.path })}
                         >
                             {route.label}

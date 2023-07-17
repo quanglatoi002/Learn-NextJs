@@ -1,4 +1,4 @@
-import { WorkFiltersPayload } from '@/models';
+import { Work, WorkFiltersPayload } from '@/models';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Search } from '@mui/icons-material';
 import { Box, InputAdornment, debounce } from '@mui/material';
@@ -10,9 +10,10 @@ export interface WorkFiltersProps {
     initialValues?: WorkFiltersPayload;
     //payload nhận kiểu trả về void
     onSubmit?: (payload: WorkFiltersPayload) => void;
+    data: Work[];
 }
 
-export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
+export function WorkFilters({ initialValues, onSubmit, data }: WorkFiltersProps) {
     //validation
     const schema = yup.object().shape({});
     //useForm
@@ -48,7 +49,7 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
                         </InputAdornment>
                     ),
                 }}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                onChange={() => {
                     debounceSearchChange();
                 }}
             />
@@ -59,12 +60,10 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
                 label="Filter by category"
                 placeholder="Categories"
                 control={control}
-                options={[
-                    { title: 'quang', key: 'a' },
-                    { title: 'frontend', key: 'fe' },
-                ]}
-                getOptionLabel={(option) => (typeof option === 'string' ? option : option.key)}
-                isOptionEqualToValue={(option, value) => option.key === value.key}
+                options={data.map((item) => item.title)}
+                // nhận lại label để hiển thị trên trình duyệt
+                getOptionLabel={(option) => (typeof option === 'string' ? option : option)}
+                isOptionEqualToValue={(option, value) => option === value}
                 onChange={() => debounceSearchChange()}
             />
         </Box>

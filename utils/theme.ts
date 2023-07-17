@@ -10,11 +10,6 @@ export const roboto = Roboto({
     fallback: ['Helvetica', 'Arial', 'sans-serif'],
 });
 
-export const inter = Inter({
-    weight: ['300', '400', '500', '700'],
-    subsets: ['latin'],
-});
-
 export const heebo = Heebo({
     weight: ['400', '500', '700'],
     subsets: ['latin'],
@@ -23,6 +18,18 @@ export const heebo = Heebo({
 
 // Create a theme instance.
 export let theme = createTheme({
+    typography: {
+        fontFamily: ['heebo', 'roboto', 'sans-serif'].join(', '),
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            md: 900,
+            lg: 1200,
+            xl: 1480,
+        },
+    },
     palette: {
         primary: {
             main: '#FF6464',
@@ -42,9 +49,7 @@ export let theme = createTheme({
             paper: '#ffffff',
         },
     },
-    typography: {
-        fontFamily: 'Heebo, sans-serif',
-    },
+
     components: {
         MuiContainer: {
             defaultProps: {
@@ -90,15 +95,21 @@ export let theme = createTheme({
             },
         },
         MuiButton: {
-            variants: [
-                {
-                    props: { variant: 'contained', color: 'primary' },
-                    style: {
-                        color: 'white',
-                        backgroundColor: '#FF6464',
-                    },
+            // variants: [
+            //     {
+            //         props: { variant: 'contained', color: 'primary' },
+            //         style: {
+            //             color: 'white',
+            //             // backgroundColor: '#FF6464',
+            //         },
+            //     },
+            // ],
+
+            styleOverrides: {
+                root: {
+                    textTransform: 'none',
                 },
-            ],
+            },
         },
         MuiChip: {
             styleOverrides: {
@@ -126,6 +137,11 @@ export let theme = createTheme({
                 root: {
                     color: '#21243D',
                 },
+            },
+        },
+        MuiStack: {
+            defaultProps: {
+                useFlexGap: true,
             },
         },
     },

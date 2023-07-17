@@ -1,0 +1,33 @@
+chúng ta sử dụng ':' để chỉ định kiểu dữ liệu của 1 biến, 1 tham số, 1 thuộc tính
+
+ví dụ về biến
+    let age: number = 22;
+ví dụ về tham số
+    function greet(name:string)
+ví dụ về thuộc tính của đối tượng
+        interface Person {
+        name: string;
+        age: number;
+        isStudent: boolean;
+        }
+ví dụ về hàm
+        function add(a: number, b: number): number {return a + b;}
+
+Trong TypeScript, < > được sử dụng để chỉ định kiểu tùy chỉnh thông qua Generics. Generics là một tính năng của TypeScript cho phép chúng ta parametrize kiểu dữ liệu trong một khối mã. 
+
+function toArray<T>(value: T): T[] {
+  return [value];
+}
+
+let array: number[] = toArray<number>(5);
+
+Trong TypeScript, chúng ta sử dụng từ khoá as để thực hiện khẳng định kiểu (type assertion) khi chúng ta biết chắc chắn rằng kiểu dữ liệu của một biểu thức cụ thể là đúng, mặc dù TypeScript không thể suy ra được nó một cách chính xác.
+
+let value: any = "Hello World";
+let length: number = (value as string).length;
+    - Khi làm việc với các kiểu dữ liệu hỗn hợp (Union types):
+    let result: string | number = Math.random() < 0.5 ? "Hello" : 42;
+let message: string = (result as string).toUpperCase();
+    -Khi làm việc với các kiểu dữ liệu không xác định (unknown):
+    let userInput: unknown = "Hello World";
+    let message: string = (userInput as string).toUpperCase();

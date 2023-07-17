@@ -32,6 +32,7 @@ export default function App({
                 <CssBaseline />
                 <ToastContainer />
                 <SWRConfig
+                    //fetcher được sử dụng để yêu cầu lấy API
                     value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}
                 >
                     <Layout>

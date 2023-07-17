@@ -4,7 +4,7 @@ import { MainLayout } from '@/components/layout';
 import { NextPageWithLayout } from '@/models';
 import { Box } from '@mui/material';
 import { Inter } from 'next/font/google';
-
+import Icon from '../components/Icon';
 const inter = Inter({ subsets: ['latin'] });
 
 const Home: NextPageWithLayout = () => {
@@ -31,9 +31,11 @@ const Home: NextPageWithLayout = () => {
                     url: 'https://learn-next-js-brown.vercel.app/',
                 }}
             />
+
             <HeroSection />
             <RecentPosts />
             <FeaturedWorks />
+            <Icon name="Alarm" width={40} height={40} alt="icon" />
         </Box>
     );
 };
