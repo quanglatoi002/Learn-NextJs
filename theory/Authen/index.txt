@@ -6,3 +6,11 @@ LocalStorage ==> XSS attack(tấn công qua HTML) sử dụng sanitize-html ho�
 Sử dụng NextJS làm máy chủ proxy để ẩn "Máy chủ API" của chúng tôi khỏi mạng của người dùng.
 Sử dụng cookie với httpOnly để javascript của khách hàng không thể truy xuất cookie
 Tự động gửi cookie đến máy chủ NextJS.
+
+---->Điểm khác nhau giữa local storage và cookie
+
+1.Dung lượng lưu trữ: Local storage thường có dung lượng lưu trữ lớn hơn so với cookie. Cookie giới hạn dung lượng tối đa khoảng vài KB, trg khi local storage mb
+2.Quyền truy cập: LocalStorage truy cập dễ dàng hơn so với cookie
+3.Thời gian sống: Cookie có thể có thời gian sống được đặt bởi máy chủ, và có thể được lưu trữ trong 1 time nhất định(giờ, tuần, tháng). Trong khi localStorage có thể lưu trữ vô thời hạn trừ khi ng dùng xóa nó thủ công
+4.An toàn Cookie được xem là không an toàn hơn so với localStorage vì chúng được gửi đi cùng với mỗi yêu cầu HTTP và có thể bị đánh cắp hoặc xâm nhập. Ngược lại, localStorage không được gửi đi mỗi yêu cầu HTTP, giúp giải nguy cơ tấn công.
+5. Phạm vi: Cookie có thể được thiết lập để có phạm vi chỉ riêng cho 1 trang web hoặc cho toàn bộ miền. Trog khi đó, localStorage có phạm vi giới hạn chỉ trong ngữ cảnh web

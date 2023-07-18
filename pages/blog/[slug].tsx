@@ -23,6 +23,7 @@ export interface BlogPageProps {
 export default function PostDetailPage({ post }: BlogPageProps) {
     const DEFAULT_IMG =
         'https://images.unsplash.com/photo-1549923746-c502d488b3ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80';
+    console.log(post);
     if (!post) return null;
     //để hiển thị nội dung  HTML trong TSX chúng ta sử dụng thuộc tính dangerouslySetInnerHTML
     return (

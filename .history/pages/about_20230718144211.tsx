@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 // import Header from '@/components/common/header';
-import { AdminLayout, MainLayout } from '@/components/layout';
+import { AdminLayout } from '@/components/layout';
 import { Box, Typography } from '@mui/material';
-import { roboto } from '@/utils';
-
 //sử dụng dynamic ssr=false cho trường hợp bạn chỉ muốn nó render ở phía clients
 // const Header = dynamic(() => import('@/components/common/header'), { ssr: false });
 export interface AboutPageProps {}

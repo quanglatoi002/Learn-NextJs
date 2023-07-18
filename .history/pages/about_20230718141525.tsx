@@ -1,13 +1,11 @@
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 // import Header from '@/components/common/header';
-import { AdminLayout, MainLayout } from '@/components/layout';
+import { AdminLayout } from '@/components/layout';
 import { Box, Typography } from '@mui/material';
-import { roboto } from '@/utils';
-
 //sử dụng dynamic ssr=false cho trường hợp bạn chỉ muốn nó render ở phía clients
-// const Header = dynamic(() => import('@/components/common/header'), { ssr: false });
+const Header = dynamic(() => import('@/components/common/header'), { ssr: false });
 export interface AboutPageProps {}
 
 // lúc đầu kết quả trả về bên phía clients
@@ -54,7 +52,7 @@ export default function AboutPage(props: AboutPageProps) {
             <Typography component="h1" variant="h5" color="primary.main">
                 About Page
             </Typography>
-            {/* <Header /> */}
+            <Header />
             <ul className="post-list">
                 {postList.map((item: any) => (
                     <li key={item.id}>{item.title}</li>
