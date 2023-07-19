@@ -34,7 +34,6 @@ const Home: NextPageWithLayout = () => {
             <HeroSection />
             <RecentPosts />
             <FeaturedWorks />
-            quang
         </Box>
     );
 };
