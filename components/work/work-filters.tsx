@@ -6,6 +6,7 @@ import { ChangeEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { AutocompleteField, InputField } from '../form';
+import { useTagList } from '@/hooks';
 export interface WorkFiltersProps {
     initialValues?: WorkFiltersPayload;
     //payload nhận kiểu trả về void
@@ -15,6 +16,9 @@ export interface WorkFiltersProps {
 export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
     //validation
     const schema = yup.object().shape({});
+
+    const { data } = useTagList({});
+    const tagList = data?.data || [];
     //useForm
     //handleSubmit sẽ được gọi khi người dùng gửi form
     const { control, handleSubmit } = useForm<WorkFiltersPayload>({
@@ -27,7 +31,10 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
     });
 
     async function handleLoginSubmit(payload: WorkFiltersPayload) {
-        console.log('form submit to Pages work ', payload);
+        if (!payload) return;
+
+        payload.tagList_like = payload.selectedTagList?.join('|') || '';
+        delete payload.selectedTagList;
         await onSubmit?.(payload);
     }
 
@@ -59,12 +66,9 @@ export function WorkFilters({ initialValues, onSubmit }: WorkFiltersProps) {
                 label="Filter by category"
                 placeholder="Categories"
                 control={control}
-                options={[
-                    { title: 'quang', key: 'a' },
-                    { title: 'frontend', key: 'fe' },
-                ]}
-                getOptionLabel={(option) => (typeof option === 'string' ? option : option.key)}
-                isOptionEqualToValue={(option, value) => option.key === value.key}
+                options={tagList}
+                getOptionLabel={(option) => option}
+                isOptionEqualToValue={(option, value) => option === value}
                 onChange={() => debounceSearchChange()}
             />
         </Box>

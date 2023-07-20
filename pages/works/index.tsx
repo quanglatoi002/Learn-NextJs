@@ -23,7 +23,7 @@ export default function WorksPage(props: WorksPageProps) {
 
     const initFiltersPayload: WorkFiltersPayload = {
         search: filters.title_like || '',
-        tagList_search: '',
+        selectedTagList: filters.tagList_like?.split('|') || [],
     };
     //useSWR để lấy api, useWorkList ở hook gọi tới work-api đã được định nghĩa ở api-client. Trong work-api nhận vào cho mình {data: Array<Work>, pagination}
     //giải quyết vấn đề lần render đầu tiên lun luôn là undefined. lần đầu render isReady = false
@@ -55,6 +55,7 @@ export default function WorksPage(props: WorksPageProps) {
                     ...filters,
                     _page: 1,
                     title_like: newFilters.search,
+                    tagList_like: newFilters.tagList_like,
                 },
             },
             undefined,

@@ -10,7 +10,7 @@ export interface Work {
 }
 export interface WorkFiltersPayload {
     search: string;
-    tagList_search: string;
+    tagList_like?: string;
 
     selectedTagList?: string[];
 }
